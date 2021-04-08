@@ -1,6 +1,11 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-image: url('Images/pexels-photo-3944405.jpeg');
 }
 
 /* Set padding to keep content from hitting the edges */

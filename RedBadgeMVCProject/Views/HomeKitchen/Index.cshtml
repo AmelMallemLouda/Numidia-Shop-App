@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RedBadgeMVC.Models.HomeKitchenModels.HomeKitchenListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeKitchenId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeKitchenName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeKitchenId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeKitchenName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HomeKitchenId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.HomeKitchenId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.HomeKitchenId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model RedBadgeMVC.Models.CategoryModels.CategoryDetails
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h4>CategoryDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clothing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clothing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Home)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Home)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Beauty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Beauty)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
