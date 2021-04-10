@@ -17,6 +17,7 @@ namespace RedBadgeMVC.Models.ItemModels
 
         [Display(Name = "Item Price")]
         public double ItemPrice { get; set; }
-
+        public int HomeId { get; set; }
+        public string HomeName { get; set; }
     }
 }

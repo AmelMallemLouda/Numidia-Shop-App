@@ -2,6 +2,7 @@
 using RedBadgeMVC.Models.HomeKitchenModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,20 +31,21 @@ namespace RedBadgeMVC.Service
         }
 
 
-        public IEnumerable<HomeKitchenListItem> GetHomeKitchen()
+        public async Task<IEnumerable<HomeKitchenListItem>> GetHomeKitchen()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.HomeKitchens.Select(
+                var query = await ctx.HomeKitchens.Select(
                             e =>
                                 new HomeKitchenListItem
                                 {
+                                    HomeKitchenId = e.HomeKitchenId,
                                     HomeKitchenName = e.HomeKitchenName
                                 }
 
-                        );
+                        ).ToListAsync();
 
-                return query.ToArray();
+                return query.OrderBy(e => e.HomeKitchenId);
             }
         }
   

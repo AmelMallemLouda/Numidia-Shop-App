@@ -31,4 +31,8 @@ namespace RedBadgeMVC.Models.ItemModels
         [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
-    }    }   
+
+        public int HomeId { get; set; }
+        public string HomeName { get; set; }
+    }  
+}   

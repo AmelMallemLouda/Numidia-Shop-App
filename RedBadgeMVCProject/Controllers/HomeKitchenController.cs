@@ -4,6 +4,7 @@ using RedBadgeMVC.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +20,7 @@ namespace RedBadgeMVCProject.Controllers
             return service;
         }
         // GET: Clothing
-        public ActionResult Index()//The ActionResult is a return type.it allows us to return a View() method
+        public  ActionResult Index()//The ActionResult is a return type.it allows us to return a View() method
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new HomeKitchenService(userId);

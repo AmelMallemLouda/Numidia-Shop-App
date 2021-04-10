@@ -10,6 +10,7 @@ namespace RedBadgeMVC.Models.HomeKitchenModels
 {
    public class HomeKitchenListItem
     {
+        [Key]
         public int HomeKitchenId { get; set; }
 
       [Display (Name= "Home & Kitchen")]

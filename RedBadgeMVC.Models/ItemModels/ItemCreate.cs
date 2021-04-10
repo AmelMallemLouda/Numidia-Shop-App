@@ -36,9 +36,9 @@ namespace RedBadgeMVC.Models.ItemModels
         
         public virtual Category category { get; set; }
 
-
-
-
+        public int HomeId { get; set; }
+        public int BautyId { get; set; }
+        
 
     }
 }

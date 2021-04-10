@@ -4,6 +4,7 @@ using RedBadgeMVC.Data;
 using RedBadgeMVC.Models.ItemModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace RedBadgeMVC.Service
         }
 
         //Create an instance of Item
-        public bool CreateItem(ItemCreate item)
+        public async Task<bool> CreateItem(ItemCreate item)
         {
             var entity = new Item()
             {
@@ -29,39 +30,45 @@ namespace RedBadgeMVC.Service
                 ItemDescription = item.ItemDescription,
                 ItemPrice = item.ItemPrice,
                 ItemCondition = item.ItemCondition,
+                HomeId = item.HomeId,
+                BautyId = item.BautyId,
+                ClothingId = item.ClothingId
                 //CategoryName=item.Categoryname
             };
             using (var ctx = new ApplicationDbContext())// Access database
             {
                 ctx.Items.Add(entity);// access items Table and add items
-                return ctx.SaveChanges() == 1;
+                return await ctx.SaveChangesAsync() == 1;
             }
         }
       
 
         //See all the Items 
-        public IEnumerable<ItemList> GetAllItems()
+        public async Task<IEnumerable<ItemList>> GetAllItems()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Items.Select(e => new ItemList
+                var query = await ctx.Items.Select(e => new ItemList
                 {
                     ItemId=e.ItemId,
                     ItemName = e.ItemName,
-                    ItemPrice = e.ItemPrice
-                });
+                    ItemPrice = e.ItemPrice,
+                    HomeId=e.HomeKitchen.HomeKitchenId,
+                    HomeName= e.HomeKitchen.HomeKitchenName
+                    
+                }).ToListAsync();
 
-                return query.ToArray();
+                return query.OrderBy(e=> e.ItemId);
             }
         }
 
         //See Details
 
-        public ItemDetails GetItemById(int id)
+        public async Task<ItemDetails> GetItemById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Items.Where(e => e.ItemId == id && e.OwnerId == _userId).FirstOrDefault();
+                var entity = await ctx.Items.Where(e => e.ItemId == id && e.OwnerId == _userId).FirstOrDefaultAsync();
 
                 return
                     new ItemDetails
@@ -71,6 +78,8 @@ namespace RedBadgeMVC.Service
                         ItemDescription = entity.ItemDescription,
                         ItemPrice = entity.ItemPrice,
                         ItemCondition = entity.ItemCondition,
+                        HomeId = entity.HomeId,
+                        HomeName = entity.HomeKitchen.HomeKitchenName
                         //CategoryName=item.Categoryname
 
                     };
@@ -78,16 +87,17 @@ namespace RedBadgeMVC.Service
         }
 
 
-        public bool UpdateItem(ItemEdit item)
+        public async Task<bool> UpdateItem(ItemEdit item)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Items.Where(e => e.ItemId == item.ItemId && e.OwnerId == _userId).FirstOrDefault();
+                var entity = await ctx.Items.Where(e => e.ItemId == item.ItemId && e.OwnerId == _userId).FirstOrDefaultAsync();
                 entity.ItemId = entity.ItemId;
                 entity.ItemName = item.ItemName;
                 entity.ItemDescription = item.ItemDescription;
                 entity.ItemPrice = item.ItemPrice;
                 entity.ItemCondition = item.ItemCondition;
+                
                 //CategoryName=item.Categoryname
 
                 return ctx.SaveChanges() == 1;
