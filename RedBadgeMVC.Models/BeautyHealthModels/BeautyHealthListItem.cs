@@ -15,6 +15,6 @@ namespace RedBadgeMVC.Models.BeautyHealthModels
         [Display(Name = "Beauty & Health")]
         public string BeautyHealthName { get; set; }
 
-        //public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
+        public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
     }
 }

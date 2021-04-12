@@ -28,16 +28,11 @@ namespace RedBadgeMVC.Models.ItemModels
         public string ItemCondition { get; set; }
 
 
-        [Display(Name = "Clothing Category ")]
+        [Display(Name = "Clothing ")]
         public int ClothingId { get; set; }
 
-        
-        public int categoryId { get; set; }
-        
-        public virtual Category category { get; set; }
-
-        public int HomeId { get; set; }
-        public int BautyId { get; set; }
+        public int HomeKitchenId { get; set; }
+        public int BeautyHealthId { get; set; }
         
 
     }

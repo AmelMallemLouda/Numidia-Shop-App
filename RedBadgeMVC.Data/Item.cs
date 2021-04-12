@@ -28,16 +28,24 @@ namespace RedBadgeMVC.Data
 
         [Required]
         public string ItemCondition { get; set; }
-        public int HomeId { get; set; }
+
+
+        [ForeignKey(nameof(HomeKitchen))]
+        [Required]
+        public int HomeKitchenId { get; set; }
         public virtual HomeKitchen HomeKitchen { get; set; }
-        public int BautyId { get; set; }
-        public virtual BeautyHealth BeautyHealth { get; set; }
+
+        [ForeignKey(nameof(Clothing))]
+        [Required]
         public int ClothingId { get; set; }
         public virtual Clothing Clothing { get; set; }
 
-        //[ForeignKey(nameof(Category))]
-        //public int CategoryId { get; set; }
-        //public virtual Category Category { get; set; }
+        [ForeignKey(nameof(BeautyHealth))]
+        [Required]
+        public int BeautyHealthId { get; set; }
+        public virtual BeautyHealth BeautyHealth { get; set; }
+
+
 
 
 

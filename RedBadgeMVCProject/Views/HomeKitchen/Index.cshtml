@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RedBadgeMVC.Models.HomeKitchenModels.HomeKitchenListItem>
+﻿@model IEnumerable<RedBadgeMVC.Models.ClothingModels.ClothingListItem>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.HomeKitchenId)
+            @Html.DisplayNameFor(model => model.ClothingId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HomeKitchenName)
+            @Html.DisplayNameFor(model => model.ClothingName)
         </th>
         <th></th>
     </tr>
@@ -23,15 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.HomeKitchenId)
+            @Html.DisplayFor(modelItem => item.ClothingId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HomeKitchenName)
+            @Html.DisplayFor(modelItem => item.ClothingName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HomeKitchenId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.HomeKitchenId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.HomeKitchenId })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

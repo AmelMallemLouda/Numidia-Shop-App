@@ -13,6 +13,6 @@ namespace RedBadgeMVC.Models.ClothingModels
         public int ClothingId { get; set; }
         [Display(Name = "Clothing")]
         public string ClothingName { get; set; }
-       // public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
+        public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
     }
 }

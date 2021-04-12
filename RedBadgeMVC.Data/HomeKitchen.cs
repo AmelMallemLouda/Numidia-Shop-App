@@ -11,9 +11,9 @@ namespace RedBadgeMVC.Data
     {
         [Key]
         public int HomeKitchenId { get; set; }
-
+       // public Guid OwnerID { get; set; }
         [Display(Name = "Home & Kitchen")]
         public string HomeKitchenName { get; set; }
-        //public virtual List<Item> Items { get; set; } = new List<Item>();
+        public virtual List<Item> Items { get; set; } = new List<Item>();
     }
 }

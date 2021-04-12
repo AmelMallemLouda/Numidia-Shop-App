@@ -2,6 +2,7 @@
 using RedBadgeMVC.Models.BeautyHealthModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,20 +30,21 @@ namespace RedBadgeMVC.Service
             }
         }
 
-        public IEnumerable<BeautyHealthListItem> GetBeautyHealth()
+        public async Task<IEnumerable<BeautyHealthListItem>> GetBeautyHealth()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.BeautyHealths.Select(
+                var query = await ctx.BeautyHealths.Select(
                             e =>
                                 new BeautyHealthListItem
                                 {
+                                    BeautyhealthId=e.BeautyhealthId,
                                     BeautyHealthName=e.BeautyHealthName
                                 }
 
-                        );
+                        ).ToListAsync();
 
-                return query.ToArray();
+                return query.OrderBy(e => e.BeautyhealthId);
             }
         }
 

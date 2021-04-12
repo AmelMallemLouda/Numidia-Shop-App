@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.BeautyHealthName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BeautyhealthId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.BeautyhealthId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.BeautyhealthId })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

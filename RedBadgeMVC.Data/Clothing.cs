@@ -14,6 +14,6 @@ namespace RedBadgeMVC.Data
 
         [Display(Name = "Clothing")]
         public string ClothingName { get; set; }
-      // public virtual List<Item> Items { get; set; } = new List<Item>();
+      public virtual List<Item> Items { get; set; } = new List<Item>();
     }
 }

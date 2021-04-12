@@ -30,18 +30,42 @@ namespace RedBadgeMVC.Service
                 ItemDescription = item.ItemDescription,
                 ItemPrice = item.ItemPrice,
                 ItemCondition = item.ItemCondition,
-                HomeId = item.HomeId,
-                BautyId = item.BautyId,
+                HomeKitchenId = item.HomeKitchenId,
+                BeautyHealthId = item.BeautyHealthId,
                 ClothingId = item.ClothingId
-                //CategoryName=item.Categoryname
+                
             };
             using (var ctx = new ApplicationDbContext())// Access database
             {
                 ctx.Items.Add(entity);// access items Table and add items
+
                 return await ctx.SaveChangesAsync() == 1;
             }
         }
-      
+        public bool CreateOrder(ItemCreate model)
+        {
+            var entity =
+                new Item()
+                {
+
+
+                    OwnerId = _userId, //We want the user who creates the note to be the user who is logged in
+                    ItemName = model.ItemName,
+                    ItemDescription = model.ItemDescription,
+                    ItemPrice = model.ItemPrice,
+                    ItemCondition = model.ItemCondition,
+                    HomeKitchenId = model.HomeKitchenId,
+                    BeautyHealthId = model.BeautyHealthId,
+                    ClothingId = model.ClothingId
+
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Items.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
         //See all the Items 
         public async Task<IEnumerable<ItemList>> GetAllItems()
@@ -53,8 +77,8 @@ namespace RedBadgeMVC.Service
                     ItemId=e.ItemId,
                     ItemName = e.ItemName,
                     ItemPrice = e.ItemPrice,
-                    HomeId=e.HomeKitchen.HomeKitchenId,
-                    HomeName= e.HomeKitchen.HomeKitchenName
+                    //HomeId=e.HomeKitchen.HomeKitchenId,
+                    //HomeName= e.HomeKitchen.HomeKitchenName
                     
                 }).ToListAsync();
 
@@ -78,9 +102,11 @@ namespace RedBadgeMVC.Service
                         ItemDescription = entity.ItemDescription,
                         ItemPrice = entity.ItemPrice,
                         ItemCondition = entity.ItemCondition,
-                        HomeId = entity.HomeId,
-                        HomeName = entity.HomeKitchen.HomeKitchenName
-                        //CategoryName=item.Categoryname
+                        HomeKitchenId = entity.HomeKitchenId,
+                        HomeKitchenName = entity.HomeKitchen.HomeKitchenName,
+                        ClothingName=entity.Clothing.ClothingName,
+                        BeautyHealthName=entity.BeautyHealth.BeautyHealthName
+                        
 
                     };
             }
@@ -97,8 +123,8 @@ namespace RedBadgeMVC.Service
                 entity.ItemDescription = item.ItemDescription;
                 entity.ItemPrice = item.ItemPrice;
                 entity.ItemCondition = item.ItemCondition;
-                
-                //CategoryName=item.Categoryname
+                entity.Clothing.ClothingName = item.ClothingName;
+                entity.BeautyHealth.BeautyHealthName = item.BeautyHealthName;
 
                 return ctx.SaveChanges() == 1;
             }

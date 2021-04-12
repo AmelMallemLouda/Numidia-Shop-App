@@ -66,8 +66,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RedBadgeMVC.Data\RedBadgeMVC.Data.csproj">
-      <Project>{662f8616-650a-434a-a4c1-6f2c4dc267ae}</Project>
+    <ProjectReference Include="..\RedBadgeMVC.Data\RedBadgeMVC.Data.csproj">
+      <Project>{c8179d4f-8cfa-4325-ba89-840fe183f7c6}</Project>
       <Name>RedBadgeMVC.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\RedBadgeMVC.Models\RedBadgeMVC.Models.csproj">

@@ -16,6 +16,6 @@ namespace RedBadgeMVC.Models.HomeKitchenModels
       [Display (Name= "Home & Kitchen")]
         public string HomeKitchenName { get; set; }
 
-        //public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
+       public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
     }
 }

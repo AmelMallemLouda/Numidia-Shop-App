@@ -2,6 +2,7 @@
 using RedBadgeMVC.Models.ClothingModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,21 +30,23 @@ namespace RedBadgeMVC.Service
             }
         }
 
-        public IEnumerable<ClothingListItem> GetClothing()
+        public async Task<IEnumerable<ClothingListItem>> GetClothing()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Clothing.Select(
+                var query = await ctx.Clothing.Select(
                             e =>
                                 new ClothingListItem
                                 {
-                                    ClothingName = e.ClothingName
+                                    ClothingId=e.ClothingId,
+                                    ClothingName=e.ClothingName
                                 }
 
-                        );
+                        ).ToListAsync();
 
-                return query.ToArray();
+                return query.OrderBy(e => e.ClothingId);
             }
         }
     }
+    
 }

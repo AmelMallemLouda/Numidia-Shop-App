@@ -20,11 +20,11 @@ namespace RedBadgeMVCProject.Controllers
             return service;
         }
         // GET: Clothing
-        public  ActionResult Index()//The ActionResult is a return type.it allows us to return a View() method
+        public  async Task<ActionResult> Index()//The ActionResult is a return type.it allows us to return a View() method
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new HomeKitchenService(userId);
-            var model = service.GetHomeKitchen();
+            var model = await service.GetHomeKitchen();
             return View(model);//That View() method will return a view that corresponds to the HomeKitchenController. view() displays all the Clothing .
 
         }
