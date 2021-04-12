@@ -26,7 +26,8 @@ namespace RedBadgeMVCProject.Controllers
         // GET: Item
         public async Task<ActionResult> Index()//The ActionResult is a return type.it allows us to return a View() method
         {
-           ViewBag.HomeKitchenId = await GetHomeAsync();
+            //The ViewBag in ASP.NET MVC is used to transfer temporary data (which is not included in the model) from the controller to the view
+            ViewBag.HomeKitchenId = await GetHomeAsync();
             ViewBag.ClothingId = await GetClothingAsync();
             ViewBag.BeautyHealthId = await GetBeautygAsync();
 
@@ -99,7 +100,7 @@ namespace RedBadgeMVCProject.Controllers
                     ItemDescription = update.ItemDescription,
                     ItemPrice = update.ItemPrice,
                     ItemCondition = update.ItemCondition,
-                    //CategoryName=item.Categoryname
+                   
                 };
             ViewBag.HomeKitchenId = await GetHomeAsync();
             ViewBag.ClothingId = await GetClothingAsync();

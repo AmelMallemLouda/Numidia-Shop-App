@@ -10,7 +10,7 @@ namespace RedBadgeMVC.Models.ClothingModels
 {
     public class ClothingListItem
     {
-        public int ClothingId { get; set; }
+        public int? ClothingId { get; set; }
         [Display(Name = "Clothing")]
         public string ClothingName { get; set; }
         public virtual List<ItemList> Items { get; set; } = new List<ItemList>();

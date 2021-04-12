@@ -42,30 +42,30 @@ namespace RedBadgeMVC.Service
                 return await ctx.SaveChangesAsync() == 1;
             }
         }
-        public bool CreateOrder(ItemCreate model)
-        {
-            var entity =
-                new Item()
-                {
+        //public bool CreateOrder(ItemCreate model)
+        //{
+        //    var entity =
+        //        new Item()
+        //        {
 
 
-                    OwnerId = _userId, //We want the user who creates the note to be the user who is logged in
-                    ItemName = model.ItemName,
-                    ItemDescription = model.ItemDescription,
-                    ItemPrice = model.ItemPrice,
-                    ItemCondition = model.ItemCondition,
-                    HomeKitchenId = model.HomeKitchenId,
-                    BeautyHealthId = model.BeautyHealthId,
-                    ClothingId = model.ClothingId
+        //            OwnerId = _userId, //We want the user who creates the note to be the user who is logged in
+        //            ItemName = model.ItemName,
+        //            ItemDescription = model.ItemDescription,
+        //            ItemPrice = model.ItemPrice,
+        //            ItemCondition = model.ItemCondition,
+        //            HomeKitchenId = model.HomeKitchenId,
+        //            BeautyHealthId = model.BeautyHealthId,
+        //            ClothingId = model.ClothingId
 
-                };
+        //        };
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Items.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        ctx.Items.Add(entity);
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         //See all the Items 
         public async Task<IEnumerable<ItemList>> GetAllItems()
@@ -102,10 +102,12 @@ namespace RedBadgeMVC.Service
                         ItemDescription = entity.ItemDescription,
                         ItemPrice = entity.ItemPrice,
                         ItemCondition = entity.ItemCondition,
-                        HomeKitchenId = entity.HomeKitchenId,
-                        HomeKitchenName = entity.HomeKitchen.HomeKitchenName,
-                        ClothingName=entity.Clothing.ClothingName,
-                        BeautyHealthName=entity.BeautyHealth.BeautyHealthName
+                        //HomeKitchenName = entity.HomeKitchen.HomeKitchenName,
+                        //ClothingName=entity.Clothing.ClothingName,
+                        //BeautyHealthName=entity.BeautyHealth.BeautyHealthName
+                        ClothingId=entity.ClothingId,
+                        HomeKitchenId=entity.HomeKitchenId,
+                        BeautyHealthId=entity.BeautyHealthId
                         
 
                     };
@@ -125,6 +127,7 @@ namespace RedBadgeMVC.Service
                 entity.ItemCondition = item.ItemCondition;
                 entity.Clothing.ClothingName = item.ClothingName;
                 entity.BeautyHealth.BeautyHealthName = item.BeautyHealthName;
+                entity.HomeKitchen.HomeKitchenName = item.HomeKitchenName;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -134,7 +137,7 @@ namespace RedBadgeMVC.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Items.Where(e => e.ItemId == ItemId && e.OwnerId == _userId).FirstOrDefault();
+                var entity = ctx.Items.Where(e => e.ItemId == ItemId && e.OwnerId == _userId).FirstOrDefault();//to return the first element of a sequence or a default value if element isn't there.
 
                 ctx.Items.Remove(entity);
 

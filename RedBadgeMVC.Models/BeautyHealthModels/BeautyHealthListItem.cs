@@ -10,7 +10,7 @@ namespace RedBadgeMVC.Models.BeautyHealthModels
 {
     public class BeautyHealthListItem
     {
-        public int BeautyhealthId { get; set; }
+        public int? BeautyhealthId { get; set; }
 
         [Display(Name = "Beauty & Health")]
         public string BeautyHealthName { get; set; }

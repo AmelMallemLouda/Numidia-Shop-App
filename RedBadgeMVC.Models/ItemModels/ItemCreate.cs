@@ -29,10 +29,10 @@ namespace RedBadgeMVC.Models.ItemModels
 
 
         [Display(Name = "Clothing ")]
-        public int ClothingId { get; set; }
+        public int? ClothingId { get; set; }
 
-        public int HomeKitchenId { get; set; }
-        public int BeautyHealthId { get; set; }
+        public int? HomeKitchenId { get; set; }
+        public int? BeautyHealthId { get; set; }
         
 
     }

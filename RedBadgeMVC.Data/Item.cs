@@ -31,18 +31,18 @@ namespace RedBadgeMVC.Data
 
 
         [ForeignKey(nameof(HomeKitchen))]
-        [Required]
-        public int HomeKitchenId { get; set; }
+        
+        public int? HomeKitchenId { get; set; }
         public virtual HomeKitchen HomeKitchen { get; set; }
 
         [ForeignKey(nameof(Clothing))]
-        [Required]
-        public int ClothingId { get; set; }
+       
+        public int? ClothingId { get; set; }
         public virtual Clothing Clothing { get; set; }
 
         [ForeignKey(nameof(BeautyHealth))]
-        [Required]
-        public int BeautyHealthId { get; set; }
+       
+        public int? BeautyHealthId { get; set; }
         public virtual BeautyHealth BeautyHealth { get; set; }
 
 
