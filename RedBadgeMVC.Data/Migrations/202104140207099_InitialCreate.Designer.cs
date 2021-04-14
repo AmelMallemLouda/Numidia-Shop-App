@@ -13,7 +13,7 @@ namespace RedBadgeMVC.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202104101938087_InitialCreate"; }
+            get { return "202104140207099_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

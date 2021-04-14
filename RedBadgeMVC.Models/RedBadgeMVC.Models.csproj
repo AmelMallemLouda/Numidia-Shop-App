@@ -54,16 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeautyHealthModels\BeautyHealthCreate.cs" />
-    <Compile Include="BeautyHealthModels\BeautyHealthListItem.cs" />
     <Compile Include="CategoryModels\CategoryCreate.cs" />
     <Compile Include="CategoryModels\CategoryDetails.cs" />
     <Compile Include="CategoryModels\CategoryEdit.cs" />
     <Compile Include="CategoryModels\CategoryListItem.cs" />
-    <Compile Include="ClothingModels\ClothingCreate.cs" />
-    <Compile Include="ClothingModels\ClothingListItem.cs" />
-    <Compile Include="HomeKitchenModels\HomeKitchenCreate.cs" />
-    <Compile Include="HomeKitchenModels\HomeKitchenListItem.cs" />
     <Compile Include="ItemModels\ItemCreate.cs" />
     <Compile Include="ItemModels\ItemDetails.cs" />
     <Compile Include="ItemModels\ItemEdit.cs" />

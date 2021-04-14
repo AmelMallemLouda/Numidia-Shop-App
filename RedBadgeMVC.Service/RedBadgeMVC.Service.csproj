@@ -54,10 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeautyHealthService.cs" />
     <Compile Include="CategoryService.cs" />
-    <Compile Include="ClothingService.cs" />
-    <Compile Include="HomeKitchenService.cs" />
     <Compile Include="ItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

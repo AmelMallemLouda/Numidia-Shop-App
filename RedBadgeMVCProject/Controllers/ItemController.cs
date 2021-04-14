@@ -27,9 +27,7 @@ namespace RedBadgeMVCProject.Controllers
         public async Task<ActionResult> Index()//The ActionResult is a return type.it allows us to return a View() method
         {
             //The ViewBag in ASP.NET MVC is used to transfer temporary data (which is not included in the model) from the controller to the view
-            ViewBag.HomeKitchenId = await GetHomeAsync();
-            ViewBag.ClothingId = await GetClothingAsync();
-            ViewBag.BeautyHealthId = await GetBeautygAsync();
+           
 
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new ItemService(userId);
@@ -40,14 +38,9 @@ namespace RedBadgeMVCProject.Controllers
         }
 
         //GET
-        public async Task<ActionResult> Create()//GET method that gives a Seller a View in which they can fill in the Name, Description....for an item
-        {
-            var service = CreateItemService();
-
-            ViewBag.SyncOrAsync = "Asynchronous";
-            ViewBag.HomeKitchenId = await GetHomeAsync();
-            ViewBag.ClothingId = await GetClothingAsync();
-            ViewBag.BeautyHealthId = await GetBeautygAsync();
+        public ActionResult Create()//GET method that gives a Seller a View in which they can fill in the Name, Description....for an item
+        { 
+       
             return View();
 
         }
@@ -60,9 +53,7 @@ namespace RedBadgeMVCProject.Controllers
             if (!ModelState.IsValid)
             {
                 
-                ViewBag.ClothingId = await GetClothingAsync();
-                ViewBag.BeautyHealthId = await GetBeautygAsync();
-                ViewBag.HomeKitchenId = await GetHomeAsync();
+               
 
                 return View(model);//makes sure the model is valid
             }
@@ -77,9 +68,7 @@ namespace RedBadgeMVCProject.Controllers
             ModelState.AddModelError("", "Note could not be created.");//?
            
 
-            ViewBag.ClothingId = await GetClothingAsync();
-            ViewBag.BeautyHealthId = await GetBeautygAsync();
-            ViewBag.HomeKitchenId = await GetHomeAsync();
+          
             return View(model);
         }
         public ActionResult Details(int id)
@@ -89,10 +78,10 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
         }
-        public async Task<ActionResult> Edit(int id)//GET method that gives a Seller a View in which they can update the Name, Description....for an item
+        public ActionResult Edit(int id)//GET method that gives a Seller a View in which they can update the Name, Description....for an item
         {
             var service = CreateItemService();
-            var update =await service.GetItemById(id);
+            var update =service.GetItemById(id);
             var model =
                 new ItemEdit
                 {
@@ -100,11 +89,11 @@ namespace RedBadgeMVCProject.Controllers
                     ItemDescription = update.ItemDescription,
                     ItemPrice = update.ItemPrice,
                     ItemCondition = update.ItemCondition,
+                    Quantity=update.Quantity,
+                    CategoryId=update.CategoryId,
                    
                 };
-            ViewBag.HomeKitchenId = await GetHomeAsync();
-            ViewBag.ClothingId = await GetClothingAsync();
-            ViewBag.BeautyHealthId = await GetBeautygAsync();
+          
             return View(model);
         }
         [HttpPost]
@@ -153,62 +142,7 @@ namespace RedBadgeMVCProject.Controllers
 
             return RedirectToAction("Index");
         }
-        public async Task<IEnumerable<SelectListItem>> GetHomeAsync()
-        {
-             var userId = Guid.Parse(User.Identity.GetUserId());
-            var catService = new HomeKitchenService(userId);
-            var categoryList = await catService.GetHomeKitchen();
-           
-            
-            var catSelectList = categoryList.Select(
-                                        e =>
-                                            new SelectListItem
-                                            {
-                                                Value = e.HomeKitchenId.ToString(),
-                                                Text = e.HomeKitchenName
-                                            }
-                                        ).ToList();
-            
-                
-            return catSelectList;
-        }
-        public async Task<IEnumerable<SelectListItem>> GetClothingAsync()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var catService = new ClothingService(userId);
-            var categoryList = await catService.GetClothing();
-
-
-            var catSelectList = categoryList.Select(
-                                        e =>
-                                            new SelectListItem
-                                            {
-                                                Value = e.ClothingId.ToString(),
-                                                Text = e.ClothingName
-                                            }
-                                        ).ToList();
-
-
-            return catSelectList;
-        }
-        public async Task<IEnumerable<SelectListItem>> GetBeautygAsync()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var catService = new BeautyHealthService(userId);
-            var categoryList = await catService.GetBeautyHealth();
-
-
-            var catSelectList = categoryList.Select(
-                                        e =>
-                                            new SelectListItem
-                                            {
-                                                Value = e.BeautyhealthId.ToString(),
-                                                Text = e.BeautyHealthName
-                                            }
-                                        ).ToList();
-
-
-            return catSelectList;
-        }
+        
+       
     }
 }

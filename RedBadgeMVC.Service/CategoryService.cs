@@ -1,6 +1,6 @@
 ﻿using RedBadgeMVC.Data;
 using RedBadgeMVC.Models.CategoryModels;
-using RedBadgeMVC.Models.ClothingModels;
+
 using RedBadgeMVC.Models.ItemModels;
 using System;
 using System.Collections.Generic;
@@ -24,9 +24,7 @@ namespace RedBadgeMVC.Service
         {
             var entity = new Category()
             {
-                ClothingId=category.ClothingId,
-                HomeId=category.HomeId,
-                BeautyHealthId=category.BeautyId
+                CategoryName=category.CategoryName
 
             };
             using (var ctx = new ApplicationDbContext())// Access database
@@ -35,21 +33,36 @@ namespace RedBadgeMVC.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        
+
+        // Get categories
+        public IEnumerable<Category> GetCategories()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Categories.ToList();
+            }
+        }
+
         public IEnumerable<CategoryListItem> GetAllCategories()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Categories.Select(e => new CategoryListItem
                 {
-
-                   ClothingId=e.ClothingId,
-                   HomeId=e.HomeId,
-                   BeautyId=e.BeautyHealthId,
+                    CategoryId=e.CategoryId,
+                   CategoryName=e.CategoryName,
+                   Items=e.Items.Select(
+                       z =>new ItemList
+                       {
+                           ItemName=z.ItemName,
+                           ItemPrice=z.ItemPrice,
+                           Quantity=z.Quantity
+                       }).ToList()
 
 
 
                 }) ;
+               
 
                 return query.ToArray();
             }
@@ -61,16 +74,15 @@ namespace RedBadgeMVC.Service
                 var entity = ctx.Categories.Where(e => e.CategoryId == categoryId).FirstOrDefault();
                 return new CategoryDetails
                 {
-                    CategoryId=entity.CategoryId,
-                    HomeId=entity.HomeId,
-                    BeautyID=entity.BeautyHealthId
-
-                    //Items = entity.Items.Select(x => new Models.ItemModels.ItemList //Access Item Table and the itemList Propreties
-                    //{
-                    //    ItemId = x.ItemId,
-                    //    ItemName = x.ItemName,
-                    //    ItemPrice = x.ItemPrice
-                    //}).ToList()
+                    CategoryId = entity.CategoryId,
+                    CategoryName = entity.CategoryName,
+                    Items = entity.Items.Select(
+                       z => new ItemList
+                       {
+                           ItemName = z.ItemName,
+                           ItemPrice = z.ItemPrice,
+                           Quantity = z.Quantity
+                       }).ToList()
                 };
             }
         }
@@ -81,9 +93,7 @@ namespace RedBadgeMVC.Service
             {
                 var entity = ctx.Categories.Where(e => e.CategoryId == category.CategoryId).FirstOrDefault();
 
-                entity.HomeId = category.HomeId;
-                entity.ClothingId = category.ClothingId;
-                entity.BeautyHealthId = category.BeautyID;
+                entity.CategoryName = category.CategoryName;
                 return ctx.SaveChanges() == 1;
 
             }

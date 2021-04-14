@@ -12,21 +12,13 @@ namespace RedBadgeMVC.Models.CategoryModels
     public class CategoryDetails
     {
        
-        [Display(Name = "Category ID")]
+       
         public int CategoryId { get; set; }
-        
-      
-        public int ClothingId { get; set; }
-        public virtual Clothing Clothes { get; set; }
 
 
-        public int HomeId { get; set; }
-        public virtual HomeKitchen HomeKitchen { get; set; }
-
-
-        public int BeautyID { get; set; }
-        public virtual BeautyHealth BeautyHealth { get; set; }
-
+        [Display(Name = "Category Type")]
+        public string CategoryName { get; set; }
+        public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
 
     }
 }

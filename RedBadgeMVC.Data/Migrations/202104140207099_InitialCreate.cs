@@ -8,48 +8,13 @@ namespace RedBadgeMVC.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.BeautyHealth",
-                c => new
-                    {
-                        BeautyhealthId = c.Int(nullable: false, identity: true),
-                        BeautyHealthName = c.String(),
-                    })
-                .PrimaryKey(t => t.BeautyhealthId);
-            
-            CreateTable(
                 "dbo.Category",
                 c => new
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
-                        ClothingId = c.Int(nullable: false),
-                        HomeId = c.Int(nullable: false),
-                        BeautyHealthId = c.Int(nullable: false),
+                        CategoryName = c.String(maxLength: 100),
                     })
-                .PrimaryKey(t => t.CategoryId)
-                .ForeignKey("dbo.BeautyHealth", t => t.BeautyHealthId, cascadeDelete: true)
-                .ForeignKey("dbo.Clothing", t => t.ClothingId, cascadeDelete: true)
-                .ForeignKey("dbo.HomeKitchen", t => t.HomeId, cascadeDelete: true)
-                .Index(t => t.ClothingId)
-                .Index(t => t.HomeId)
-                .Index(t => t.BeautyHealthId);
-            
-            CreateTable(
-                "dbo.Clothing",
-                c => new
-                    {
-                        ClothingId = c.Int(nullable: false, identity: true),
-                        ClothingName = c.String(),
-                    })
-                .PrimaryKey(t => t.ClothingId);
-            
-            CreateTable(
-                "dbo.HomeKitchen",
-                c => new
-                    {
-                        HomeKitchenId = c.Int(nullable: false, identity: true),
-                        HomeKitchenName = c.String(),
-                    })
-                .PrimaryKey(t => t.HomeKitchenId);
+                .PrimaryKey(t => t.CategoryId);
             
             CreateTable(
                 "dbo.Item",
@@ -61,19 +26,13 @@ namespace RedBadgeMVC.Data.Migrations
                         ItemDescription = c.String(nullable: false),
                         ItemPrice = c.Double(nullable: false),
                         ItemCondition = c.String(nullable: false),
-                        HomeId = c.Int(nullable: false),
-                        BautyId = c.Int(nullable: false),
-                        ClothingId = c.Int(nullable: false),
-                        BeautyHealth_BeautyhealthId = c.Int(),
-                        HomeKitchen_HomeKitchenId = c.Int(),
+                        Quantity = c.Int(nullable: false),
+                        CategoryName = c.String(),
+                        CategoryId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ItemId)
-                .ForeignKey("dbo.BeautyHealth", t => t.BeautyHealth_BeautyhealthId)
-                .ForeignKey("dbo.Clothing", t => t.ClothingId, cascadeDelete: true)
-                .ForeignKey("dbo.HomeKitchen", t => t.HomeKitchen_HomeKitchenId)
-                .Index(t => t.ClothingId)
-                .Index(t => t.BeautyHealth_BeautyhealthId)
-                .Index(t => t.HomeKitchen_HomeKitchenId);
+                .ForeignKey("dbo.Category", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -153,32 +112,19 @@ namespace RedBadgeMVC.Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
-            DropForeignKey("dbo.Item", "HomeKitchen_HomeKitchenId", "dbo.HomeKitchen");
-            DropForeignKey("dbo.Item", "ClothingId", "dbo.Clothing");
-            DropForeignKey("dbo.Item", "BeautyHealth_BeautyhealthId", "dbo.BeautyHealth");
-            DropForeignKey("dbo.Category", "HomeId", "dbo.HomeKitchen");
-            DropForeignKey("dbo.Category", "ClothingId", "dbo.Clothing");
-            DropForeignKey("dbo.Category", "BeautyHealthId", "dbo.BeautyHealth");
+            DropForeignKey("dbo.Item", "CategoryId", "dbo.Category");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Item", new[] { "HomeKitchen_HomeKitchenId" });
-            DropIndex("dbo.Item", new[] { "BeautyHealth_BeautyhealthId" });
-            DropIndex("dbo.Item", new[] { "ClothingId" });
-            DropIndex("dbo.Category", new[] { "BeautyHealthId" });
-            DropIndex("dbo.Category", new[] { "HomeId" });
-            DropIndex("dbo.Category", new[] { "ClothingId" });
+            DropIndex("dbo.Item", new[] { "CategoryId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
             DropTable("dbo.Item");
-            DropTable("dbo.HomeKitchen");
-            DropTable("dbo.Clothing");
             DropTable("dbo.Category");
-            DropTable("dbo.BeautyHealth");
         }
     }
 }

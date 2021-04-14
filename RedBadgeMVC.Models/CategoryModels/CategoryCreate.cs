@@ -10,19 +10,9 @@ namespace RedBadgeMVC.Models.CategoryModels
 {
     public class CategoryCreate
     {
-
+        [Display(Name = "Category Type")]
         public string CategoryName { get; set; }
-        [Required]
-        public int ClothingId { get; set; }
-        public virtual Clothing Clothes { get; set; }
-
-        [Required]
-        public int HomeId { get; set; }
-        public virtual HomeKitchen HomeKitchen { get; set; }
-
-        [Required]
-        public int BeautyId { get; set; }
-        public virtual BeautyHealth BeautyHealth { get; set; }
+       
 
 
     }

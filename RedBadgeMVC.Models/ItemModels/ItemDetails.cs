@@ -9,41 +9,33 @@ namespace RedBadgeMVC.Models.ItemModels
 {
     public class ItemDetails
     {
-        [Required]
         [Display(Name = "Item Id")]
         public int ItemId { get; set; }
-        [Required]
+       
         [Display(Name = "Item Name")]
         public string ItemName { get; set; }
 
-        [Required]
+        
         [Display(Name = "Item Description")]
         public string ItemDescription { get; set; }
 
-        [Required]
+        
         [Display(Name = "Item Price")]
         public double ItemPrice { get; set; }
 
-        [Required]
+        
         [Display(Name = "Item Condition")]
 
         public string ItemCondition { get; set; }
 
 
-        [Display(Name = "Clothing")]
-        public int? ClothingId { get; set; }
+        [Display(Name = "Item Quantity")]
+        public int Quantity { get; set; }
 
 
-        [Display(Name = "home & Kitchen")]
-        public int? HomeKitchenId { get; set; }
-
-
-        [Display(Name = "beauty & Health")]
-        public int? BeautyHealthId { get; set; }
-
-        //public string ClothingName { get; set; }
-
-        //public string HomeKitchenName { get; set; }
-        //public string BeautyHealthName { get; set; }
+        [Display(Name = "Category Id")]
+        public int CategoryId { get; set; }
+       
+      
     }  
 }   

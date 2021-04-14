@@ -35,9 +35,7 @@ namespace RedBadgeMVC.Data
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<HomeKitchen> HomeKitchens { get; set; }
-        public DbSet<BeautyHealth> BeautyHealths { get; set; }
-        public DbSet<Clothing> Clothing { get; set; }
+       
         //public DbSet<Deal> Deals { get; set; }
         //public DbSet<ShoppingCart> ShoppingCart { get; set; }
 

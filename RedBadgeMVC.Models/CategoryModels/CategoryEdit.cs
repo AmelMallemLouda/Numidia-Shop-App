@@ -10,19 +10,7 @@ namespace RedBadgeMVC.Models.CategoryModels
     public class CategoryEdit
     {
         public int CategoryId { get; set; }
-
-        
-        public int ClothingId { get; set; }
-        public virtual Clothing Clothes { get; set; }
-
-     
-        public int HomeId { get; set; }
-        public virtual HomeKitchen HomeKitchen { get; set; }
-
-        
-        public int BeautyID { get; set; }
-        public virtual BeautyHealth BeautyHealth { get; set; }
-
+        public string CategoryName { get; set; }
 
     }
 }

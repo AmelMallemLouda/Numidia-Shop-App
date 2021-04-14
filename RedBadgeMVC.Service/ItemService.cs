@@ -30,9 +30,9 @@ namespace RedBadgeMVC.Service
                 ItemDescription = item.ItemDescription,
                 ItemPrice = item.ItemPrice,
                 ItemCondition = item.ItemCondition,
-                HomeKitchenId = item.HomeKitchenId,
-                BeautyHealthId = item.BeautyHealthId,
-                ClothingId = item.ClothingId
+                Quantity=item.Quantity,
+               //CategoryName=item.CategoryName,
+               CategoryId=item.CategoryId
                 
             };
             using (var ctx = new ApplicationDbContext())// Access database
@@ -42,30 +42,7 @@ namespace RedBadgeMVC.Service
                 return await ctx.SaveChangesAsync() == 1;
             }
         }
-        //public bool CreateOrder(ItemCreate model)
-        //{
-        //    var entity =
-        //        new Item()
-        //        {
-
-
-        //            OwnerId = _userId, //We want the user who creates the note to be the user who is logged in
-        //            ItemName = model.ItemName,
-        //            ItemDescription = model.ItemDescription,
-        //            ItemPrice = model.ItemPrice,
-        //            ItemCondition = model.ItemCondition,
-        //            HomeKitchenId = model.HomeKitchenId,
-        //            BeautyHealthId = model.BeautyHealthId,
-        //            ClothingId = model.ClothingId
-
-        //        };
-
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        ctx.Items.Add(entity);
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+        
 
         //See all the Items 
         public async Task<IEnumerable<ItemList>> GetAllItems()
@@ -77,8 +54,8 @@ namespace RedBadgeMVC.Service
                     ItemId=e.ItemId,
                     ItemName = e.ItemName,
                     ItemPrice = e.ItemPrice,
-                    //HomeId=e.HomeKitchen.HomeKitchenId,
-                    //HomeName= e.HomeKitchen.HomeKitchenName
+                    Quantity=e.Quantity
+                    
                     
                 }).ToListAsync();
 
@@ -88,11 +65,11 @@ namespace RedBadgeMVC.Service
 
         //See Details
 
-        public async Task<ItemDetails> GetItemById(int id)
+        public ItemDetails GetItemById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = await ctx.Items.Where(e => e.ItemId == id && e.OwnerId == _userId).FirstOrDefaultAsync();
+                var entity =  ctx.Items.Where(e => e.ItemId == id ).FirstOrDefault();
 
                 return
                     new ItemDetails
@@ -102,13 +79,9 @@ namespace RedBadgeMVC.Service
                         ItemDescription = entity.ItemDescription,
                         ItemPrice = entity.ItemPrice,
                         ItemCondition = entity.ItemCondition,
-                        //HomeKitchenName = entity.HomeKitchen.HomeKitchenName,
-                        //ClothingName=entity.Clothing.ClothingName,
-                        //BeautyHealthName=entity.BeautyHealth.BeautyHealthName
-                        ClothingId=entity.ClothingId,
-                        HomeKitchenId=entity.HomeKitchenId,
-                        BeautyHealthId=entity.BeautyHealthId
-                        
+                        //CategoryName=entity.CategoryName,
+                        CategoryId = entity.CategoryId,
+
 
                     };
             }
@@ -125,9 +98,8 @@ namespace RedBadgeMVC.Service
                 entity.ItemDescription = item.ItemDescription;
                 entity.ItemPrice = item.ItemPrice;
                 entity.ItemCondition = item.ItemCondition;
-                entity.Clothing.ClothingName = item.ClothingName;
-                entity.BeautyHealth.BeautyHealthName = item.BeautyHealthName;
-                entity.HomeKitchen.HomeKitchenName = item.HomeKitchenName;
+            
+                entity.CategoryId = item.CategoryId;
 
                 return ctx.SaveChanges() == 1;
             }

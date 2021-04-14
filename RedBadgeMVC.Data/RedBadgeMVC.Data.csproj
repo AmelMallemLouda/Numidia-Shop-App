@@ -54,23 +54,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeautyHealth.cs" />
     <Compile Include="Category.cs" />
-    <Compile Include="Clothing.cs" />
-    <Compile Include="HomeKitchen.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="Migrations\202104101938087_InitialCreate.cs" />
-    <Compile Include="Migrations\202104101938087_InitialCreate.Designer.cs">
-      <DependentUpon>202104101938087_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202104140207099_InitialCreate.cs" />
+    <Compile Include="Migrations\202104140207099_InitialCreate.Designer.cs">
+      <DependentUpon>202104140207099_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104121957442_ItemCreate.cs" />
-    <Compile Include="Migrations\202104121957442_ItemCreate.Designer.cs">
-      <DependentUpon>202104121957442_ItemCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104122003227_ItemCreateChanged.cs" />
-    <Compile Include="Migrations\202104122003227_ItemCreateChanged.Designer.cs">
-      <DependentUpon>202104122003227_ItemCreateChanged.cs</DependentUpon>
+    <Compile Include="Migrations\202104140233226_ItemCreateChanged.cs" />
+    <Compile Include="Migrations\202104140233226_ItemCreateChanged.Designer.cs">
+      <DependentUpon>202104140233226_ItemCreateChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,14 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104101938087_InitialCreate.resx">
-      <DependentUpon>202104101938087_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104140207099_InitialCreate.resx">
+      <DependentUpon>202104140207099_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104121957442_ItemCreate.resx">
-      <DependentUpon>202104121957442_ItemCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104122003227_ItemCreateChanged.resx">
-      <DependentUpon>202104122003227_ItemCreateChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104140233226_ItemCreateChanged.resx">
+      <DependentUpon>202104140233226_ItemCreateChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
