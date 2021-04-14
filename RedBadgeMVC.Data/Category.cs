@@ -12,7 +12,7 @@ namespace RedBadgeMVC.Data
     {
         [Key]
         public int CategoryId { get; set; }
-
+        public Guid OwnerID { get; set; }
 
         [Display(Name = "Category Type")]
         [MaxLength(100, ErrorMessage = "Too long characters")]

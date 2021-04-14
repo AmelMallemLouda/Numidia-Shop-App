@@ -29,10 +29,10 @@ namespace RedBadgeMVC.Models.ItemModels
         public int Quantity { get; set; }
 
 
-        //[Display(Name = "Category Name")]
-        //public string CategoryName { get; set; }
 
-       
+        [Display(Name = "Category Name")]
+        public string CategoryName { get; set; }
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
        

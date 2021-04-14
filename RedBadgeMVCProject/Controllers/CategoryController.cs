@@ -5,6 +5,7 @@ using RedBadgeMVC.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,15 +21,14 @@ namespace RedBadgeMVCProject.Controllers
             var service = new CategoryService(userId);
             return service;
         }
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             //The ViewBag in ASP.NET MVC is used to transfer temporary data (which is not included in the model) from the controller to the view
 
 
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new CategoryService(userId);
-            var model =  service.GetAllCategories();
-
+            var service = CreateCategoryService();
+            var model = await service.GetCategoriesAsync();
+      
             return View(model);//That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
 
         }
@@ -37,26 +37,17 @@ namespace RedBadgeMVCProject.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult CreateCategory(Category category)
-        //{
-        //    _db.Categories.Add(category);
-        //    _db.SaveChanges();
-        //    TempData["SuccessMessage"] = "Saved Successfully";
-        //    return RedirectToAction("IndexCategory");
-        //}
-
-
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]//The basic purpose of ValidateAntiForgeryToken attribute is to prevent cross-site request forgery attacks
-        public ActionResult Create(CategoryCreate model)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
+        public async Task<ActionResult> Create(CategoryCreate model)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
         {
             if (!ModelState.IsValid) return View(model);//makes sure the model is valid
 
             var service = CreateCategoryService();
 
-            if (service.CreateCategory(model))
+            if (await service.CreateCategoryAsync(model))
             {
                 //TempData removes information after it's accessed
                 TempData["SaveResult"] = "Your Category was created.";
@@ -67,32 +58,31 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
         }
-        public ActionResult Details(int Id)
+        public async Task<ActionResult> Details(int id)
         {
             var svc = CreateCategoryService();
-            var model = svc.GetCategoryById(Id);
+            var model = await svc.GetCategoryByIdAsync(id);
 
             return View(model);
         }
 
         //Get
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var service = CreateCategoryService();
-            var update = service.GetCategoryById(id);
+            var detail = await service.GetCategoryByIdAsync(id);
             var model =
                 new CategoryEdit
                 {
-                    CategoryId = update.CategoryId,
-                    CategoryName=update.CategoryName
-
+                    CategoryId = detail.CategoryId,
+                    CategoryName = detail.CategoryName
                 };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CategoryEdit model)
+        public async Task<ActionResult> Edit(int id, CategoryEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -103,39 +93,55 @@ namespace RedBadgeMVCProject.Controllers
             }
             var service = CreateCategoryService();
 
-            if (service.UpdateCategory(model))
+            if (await service.UpdateCategoryAsync(model))
             {
                 TempData["SaveResult"] = "Your Category was updated.";
                 return RedirectToAction("Index");
             }
 
             ModelState.AddModelError("", "Your Category could not be updated.");
-            return View();
-        }
-
-        [ActionName("Delete")]
-        public ActionResult Delete(int id)
-        {
-            var svc = CreateCategoryService();
-            var model = svc.GetCategoryById(id);
-            TempData["SuccessMessage"] = "Deleted Successuflly";
-           
-
             return View(model);
         }
 
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             var service = CreateCategoryService();
+            var detail = await service.GetCategoryByIdAsync(id);
+            return View(detail);
+        }
 
-            service.DeleteCategory(id);
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteCategory(int id)
+        {
+            var service = CreateCategoryService();
+            if (await service.DeleteCategoryAsync(id))
+            {
+                TempData["SaveResult"] = "Your category was successfully deleted.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Your category could not be updated.");
+            return View();
+        }
+        // Helper Method
+        public async Task<IEnumerable<SelectListItem>> GetItemsAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var categoryService = new ItemService(userId);
+            var categoryList = await categoryService.GetAllItemsAsync();
 
-            TempData["SaveResult"] = "Your Category was deleted";
+            var catSelectList = categoryList.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.ItemId.ToString(),
 
-            return RedirectToAction("Index");
+                                                Text = e.ItemName,
+                                                
+                                            }
+                                        ).ToList();
+
+            return catSelectList;
         }
 
     }

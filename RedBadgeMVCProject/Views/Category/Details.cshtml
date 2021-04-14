@@ -10,7 +10,14 @@
     <h4>CategoryDetails</h4>
     <hr />
     <dl class="dl-horizontal">
-        
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
@@ -22,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

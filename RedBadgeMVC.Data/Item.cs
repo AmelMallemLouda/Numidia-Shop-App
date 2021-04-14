@@ -12,8 +12,7 @@ namespace RedBadgeMVC.Data
     {
         [Key]
         public int ItemId { get; set; }
-        public Guid OwnerId { get; set; }
-
+       
         [Required]
         [MaxLength(50, ErrorMessage = "Name cannot be greater than 50 characters")]
         [MinLength(3, ErrorMessage = "Name cannot be less than 3 characters")]
@@ -25,7 +24,7 @@ namespace RedBadgeMVC.Data
 
         [Required]
         public double ItemPrice { get; set; }
-
+        public Guid OwnerID { get; set; }
         [Required]
         public string ItemCondition { get; set; }
 
@@ -35,6 +34,7 @@ namespace RedBadgeMVC.Data
         public string CategoryName { get; set; }
 
         [ForeignKey(nameof(Category))]
+        [Required]
         public int CategoryId { get; set; }
        
         public virtual Category Category { get; set; }

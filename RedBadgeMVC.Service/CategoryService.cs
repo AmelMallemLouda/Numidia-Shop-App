@@ -4,6 +4,7 @@ using RedBadgeMVC.Models.CategoryModels;
 using RedBadgeMVC.Models.ItemModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,92 +21,101 @@ namespace RedBadgeMVC.Service
 
         //Create an instance of Item
 
-        public bool CreateCategory(CategoryCreate category)
+        public async Task<bool> CreateCategoryAsync(CategoryCreate model)
         {
             var entity = new Category()
             {
-                CategoryName=category.CategoryName
+                OwnerID = _userId,
+                CategoryName =model.CategoryName
 
             };
             using (var ctx = new ApplicationDbContext())// Access database
             {
                 ctx.Categories.Add(entity);// access items Table and add items
-                return ctx.SaveChanges() == 1;
+                return await ctx.SaveChangesAsync() == 1;
             }
         }
 
-        // Get categories
-        public IEnumerable<Category> GetCategories()
+
+
+        public async Task<IEnumerable<CategoryListItem>> GetCategoriesAsync()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                return ctx.Categories.ToList();
+                var query = await ctx
+                            .Categories
+                            .Where(e => e.OwnerID == _userId)
+                            .Select(
+                                e =>
+                                    new CategoryListItem
+                                    {
+                                        CategoryId = e.CategoryId,
+                                        CategoryName = e.CategoryName,
+                                      
+                                    }
+                    ).ToListAsync();
+                return query;
+
+
+
+            }   
+            
+        }
+        public async Task<CategoryDetails> GetCategoryByIdAsync(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = await
+                    ctx
+                        .Categories
+                        .Where(e => e.CategoryId == id && e.OwnerID == _userId)
+                        .FirstOrDefaultAsync();
+                return
+                    new CategoryDetails
+                    {
+                        CategoryId = entity.CategoryId,
+                        CategoryName = entity.CategoryName,
+                        
+                        Items = entity.Items
+                                .Select(
+                                    x => new ItemShortList
+                                    {
+                                        ItemId = x.ItemId,
+                                        Name = x.ItemName,
+                                        Price=x.ItemPrice,
+                                    }
+                                ).ToList()
+                    };
             }
         }
 
-        public IEnumerable<CategoryListItem> GetAllCategories()
+        public async Task<bool> UpdateCategoryAsync(CategoryEdit category)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Categories.Select(e => new CategoryListItem
-                {
-                    CategoryId=e.CategoryId,
-                   CategoryName=e.CategoryName,
-                   Items=e.Items.Select(
-                       z =>new ItemList
-                       {
-                           ItemName=z.ItemName,
-                           ItemPrice=z.ItemPrice,
-                           Quantity=z.Quantity
-                       }).ToList()
+                var entity = await
+                    ctx
+                        .Categories
+                        .Where(e => e.CategoryId == category.CategoryId && e.OwnerID == _userId)
+                        .FirstOrDefaultAsync();
+                entity.CategoryName= category.CategoryName;
 
-
-
-                }) ;
-               
-
-                return query.ToArray();
-            }
-        }
-        public CategoryDetails GetCategoryById(int categoryId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Categories.Where(e => e.CategoryId == categoryId).FirstOrDefault();
-                return new CategoryDetails
-                {
-                    CategoryId = entity.CategoryId,
-                    CategoryName = entity.CategoryName,
-                    Items = entity.Items.Select(
-                       z => new ItemList
-                       {
-                           ItemName = z.ItemName,
-                           ItemPrice = z.ItemPrice,
-                           Quantity = z.Quantity
-                       }).ToList()
-                };
+                return await ctx.SaveChangesAsync() == 1;
             }
         }
 
-        public bool UpdateCategory(CategoryEdit category)
+        public async Task<bool> DeleteCategoryAsync(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Categories.Where(e => e.CategoryId == category.CategoryId).FirstOrDefault();
-
-                entity.CategoryName = category.CategoryName;
-                return ctx.SaveChanges() == 1;
-
-            }
-        }
-
-        public bool DeleteCategory(int categoryId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Categories.Where(e => e.CategoryId == categoryId).FirstOrDefault();
+                var entity = await
+                    ctx
+                        .Categories
+                        .Where(e => e.CategoryId == id && e.OwnerID == _userId)
+                        .FirstOrDefaultAsync();
                 ctx.Categories.Remove(entity);
-                return ctx.SaveChanges() == 1;
+
+                return await ctx.SaveChangesAsync() == 1;
             }
         }
 

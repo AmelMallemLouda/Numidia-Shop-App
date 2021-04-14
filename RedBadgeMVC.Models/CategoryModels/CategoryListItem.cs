@@ -17,7 +17,7 @@ namespace RedBadgeMVC.Models.CategoryModels
         [Display(Name = "Category Type")]
         public string CategoryName { get; set; }
 
-        public virtual List<ItemList> Items { get; set; } = new List<ItemList>();
+        //public virtual List<ItemShortList> Items { get; set; } = new List<ItemShortList>();
 
     }
 }

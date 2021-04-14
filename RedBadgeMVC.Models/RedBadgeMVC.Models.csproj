@@ -62,6 +62,7 @@
     <Compile Include="ItemModels\ItemDetails.cs" />
     <Compile Include="ItemModels\ItemEdit.cs" />
     <Compile Include="ItemModels\ItemList.cs" />
+    <Compile Include="ItemModels\ItemShortList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

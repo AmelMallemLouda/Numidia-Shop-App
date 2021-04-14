@@ -16,6 +16,7 @@ namespace RedBadgeMVCProject.Controllers
 
     public class ItemController : Controller
     {
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
         private ItemService CreateItemService()// we use this method to call the service methods
         {
             var userId = Guid.Parse(User.Identity.GetUserId());// grabs the current userId
@@ -26,23 +27,23 @@ namespace RedBadgeMVCProject.Controllers
         // GET: Item
         public async Task<ActionResult> Index()//The ActionResult is a return type.it allows us to return a View() method
         {
-            //The ViewBag in ASP.NET MVC is used to transfer temporary data (which is not included in the model) from the controller to the view
-           
 
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new ItemService(userId);
-            var model = await service.GetAllItems();
+            var service = CreateItemService();
+            var model = await service.GetAllItemsAsync();
 
             return View(model);//That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
 
         }
 
         //GET
-        public ActionResult Create()//GET method that gives a Seller a View in which they can fill in the Name, Description....for an item
-        { 
-       
-            return View();
+        public async Task<ActionResult> Create()//GET method that gives a Seller a View in which they can fill in the Name, Description....for an item
+        {
+            var service = CreateItemService();
 
+           
+            ViewBag.CategoryId = await GetCategoriesAsync();
+
+            return View();
         }
 
 
@@ -52,8 +53,8 @@ namespace RedBadgeMVCProject.Controllers
         {
             if (!ModelState.IsValid)
             {
-                
-               
+
+                ViewBag.CategoryId = await GetCategoriesAsync();
 
                 return View(model);//makes sure the model is valid
             }
@@ -66,22 +67,22 @@ namespace RedBadgeMVCProject.Controllers
                 return RedirectToAction("Index"); //returns the user back to the index view
             };
             ModelState.AddModelError("", "Note could not be created.");//?
-           
 
-          
+            ViewBag.CategoryId = await GetCategoriesAsync();
+
             return View(model);
         }
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             var svc = CreateItemService();
-            var model = svc.GetItemById(id);
+            var model = await svc.GetItemByIdAsync(id);
 
             return View(model);
         }
-        public ActionResult Edit(int id)//GET method that gives a Seller a View in which they can update the Name, Description....for an item
+        public async Task<ActionResult> Edit(int id)//GET method that gives a Seller a View in which they can update the Name, Description....for an item
         {
             var service = CreateItemService();
-            var update =service.GetItemById(id);
+            var update = await service.GetItemByIdAsync(id);
             var model =
                 new ItemEdit
                 {
@@ -93,18 +94,21 @@ namespace RedBadgeMVCProject.Controllers
                     CategoryId=update.CategoryId,
                    
                 };
-          
+            ViewBag.CategoryId = await GetCategoriesAsync();
+
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(int id, ItemEdit item)
         {
-            if (!ModelState.IsValid) return View(item);
+            if (!ModelState.IsValid) return View(item);// indicates if it was possible to bind the incoming values from the request to the model
 
             if (item.ItemId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
+                ViewBag.CategoryID = await GetCategoriesAsync();
+
                 return View(item);
             }
             var service = CreateItemService();
@@ -115,34 +119,51 @@ namespace RedBadgeMVCProject.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = await GetCategoriesAsync();
             ModelState.AddModelError("", "Your note could not be updated.");
-            return View();
+            return View(item);
         }
 
 
         [ActionName("Delete")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var svc = CreateItemService();
-            var model = svc.GetItemById(id);
-
-            return View(model);
+            var service = CreateItemService();
+            var delete = await service.GetItemByIdAsync(id);
+            return View(delete);
         }
 
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public async Task<ActionResult> DeletePost(int id)
         {
             var service = CreateItemService();
-
-            service.DeleteItem(id);
-
-            TempData["SaveResult"] = "Your note was deleted";
+            await service.DeleteItemAsync(id);
+            TempData["SaveResult"] = "Your note was successfully deleted.";
 
             return RedirectToAction("Index");
         }
-        
-       
+
+        //Helper Method to call categories
+
+        public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var categoryService = new CategoryService(userId);
+            var categoryList = await categoryService.GetCategoriesAsync();
+
+            var catSelectList = categoryList.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.CategoryId.ToString(),
+                                               
+                                                Text = e.CategoryName
+                                            }
+                                        ).ToList();
+
+            return catSelectList;
+        }
     }
 }

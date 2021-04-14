@@ -32,11 +32,9 @@ namespace RedBadgeMVC.Models.ItemModels
 
         public int Quantity { get; set; }
 
-        
-        [Display(Name = "Category Id")]
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+        
 
 
     }
