@@ -1,0 +1,75 @@
+﻿@model RedBadgeMVC.Models.StoreModels.StoreDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StoreDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+        <h4>Items</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @foreach (var item in Model.Items)
+            {
+
+                <dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
+                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>
+
+                <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
+                <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
+
+                <dd></dd>
+                <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item.ItemId }, null)</dd>
+                <br />
+            }
+
+        </dl>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.StoreId  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

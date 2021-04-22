@@ -18,7 +18,7 @@ namespace RedBadgeMVC.Data
         [MaxLength(100, ErrorMessage = "Too long characters")]
         public string CategoryName { get; set; }
 
-        public virtual List<Item> Items { get; set; } = new List<Item>();
+        public virtual List<Product> Products { get; set; } = new List<Product>();
 
 
     }

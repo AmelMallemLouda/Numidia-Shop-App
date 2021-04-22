@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace RedBadgeMVC.Models.ItemModels
 {
-   public class ItemShortList
+   public class ProductShortList
     {
-        [Display(Name = "Note Id")]
-        public int ItemId { get; set; }
-        [Display(Name = "Item Name")]
+        [Display(Name = "Product Id")]
+        public int ProductId { get; set; }
+        [Display(Name = "Product Name")]
         public string Name { get; set; }
-        [Display(Name = "Item Price")]
+        [Display(Name = "Product Price")]
         public double Price { get; set; }
     }
 }

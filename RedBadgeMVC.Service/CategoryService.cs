@@ -51,7 +51,16 @@ namespace RedBadgeMVC.Service
                                     {
                                         CategoryId = e.CategoryId,
                                         CategoryName = e.CategoryName,
-                                      
+                                        Items= e.Products
+                                .Select(
+                                    x => new ProductShortList
+                                    {
+                                        ProductId = x.ProductId,
+                                        Name = x.ProductName,
+                                        Price = x.ProductPrice,
+                                    }
+                                ).ToList()
+
                                     }
                     ).ToListAsync();
                 return query;
@@ -76,13 +85,13 @@ namespace RedBadgeMVC.Service
                         CategoryId = entity.CategoryId,
                         CategoryName = entity.CategoryName,
                         
-                        Items = entity.Items
+                        Items = entity.Products
                                 .Select(
-                                    x => new ItemShortList
+                                    x => new ProductShortList
                                     {
-                                        ItemId = x.ItemId,
-                                        Name = x.ItemName,
-                                        Price=x.ItemPrice,
+                                        ProductId = x.ProductId,
+                                        Name = x.ProductName,
+                                        Price=x.ProductPrice,
                                     }
                                 ).ToList()
                     };

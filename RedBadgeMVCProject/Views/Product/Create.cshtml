@@ -1,0 +1,138 @@
+﻿@model RedBadgeMVC.Models.ItemModels.ProductCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+        <h4>ItemCreate</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductCondition, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductCondition, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductCondition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*Dropdownlist for  category and store*@
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", ViewBag.categorylist as SelectList, "Select a category", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StoreId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("StoreId", ViewBag.StoreList as SelectList, "Select a Store", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StoreName, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" style="width: 100%;" />
+                @{
+                    if (ViewBag.Message != null)
+                    {
+                        @ViewBag.Message
+                    }
+                }
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+</div>
+
+<div class="container ">
+   
+    <div class="raw ">
+        <div class="form-group ">
+            @Html.LabelFor(model => model.StoreId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.DropDownList("StoreId", ViewBag.ProductListItem as SelectList, "Select store", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StoreId, "", new { @class = "text-danger" })
+                <br />
+                <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3RvcmVzJTIwc2hvcHBpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pic1" border="0" style="width:300px;height:300px">
+                <br />
+                <br />
+            </div>
+        </div>
+        <br />
+        <br />
+        @*<div class="col-md-4">
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", ViewBag.RestaurantList as SelectList, "Select Category", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.vox-cdn.com%2Fthumbor%2FoxhDQuiBZiHXK0TBGAAcsJuKGlo%3D%2F1400x0%2Ffilters%3Ano_upscale()%2Fcdn.vox-cdn.com%2Fuploads%2Fchorus_asset%2Ffile%2F3143732%2Farmani.0.jpeg&imgrefurl=https%3A%2F%2Fwww.racked.com%2F2013%2F1%2F28%2F7691809%2Fthe-25-most-expensive-stores-in-the-united-states&tbnid=9K5mm56GXINRMM&vet=12ahUKEwjOw43_5ZLwAhUNe6wKHdAiDhUQMygBegUIARDIAQ..i&docid=B6mwJzdQXonfVM&w=750&h=498&q=fancy%20stores&ved=2ahUKEwjOw43_5ZLwAhUNe6wKHdAiDhUQMygBegUIARDIAQ" alt="pic1" border="0" style="width:300px;height:300px">
+            </div>
+
+        </div>*@
+
+        <br />
+        <br />
+        <div class="form-group ">
+            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 ">
+                @Html.DropDownList("CategoryId", ViewBag.ProductListItem as SelectList, "Select store", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                <br />
+                <img src="https://cdn5.vectorstock.com/i/1000x1000/14/94/shopping-mall-categories-flat-design-long-shadow-vector-32171494.jpg" alt="pic1" border="0" style="width:300px;height:300px">
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -33,11 +33,11 @@ namespace RedBadgeMVC.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-       
-        //public DbSet<Deal> Deals { get; set; }
-        //public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Store> Stores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

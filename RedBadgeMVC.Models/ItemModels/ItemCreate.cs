@@ -9,33 +9,40 @@ using System.Threading.Tasks;
 
 namespace RedBadgeMVC.Models.ItemModels
 {
-   public  class ItemCreate
+   public  class ProductCreate
     {
         [Required]
-        [Display(Name = "Item Name")]
-        public string ItemName { get; set; }
+        [Display(Name = "Product Name")]
+        public string ProductName { get; set; }
 
         [Required]
-        [Display(Name = "Item Description")]
-        public string ItemDescription { get; set; }
+        [Display(Name = "Product Description")]
+        public string ProductDescription { get; set; }
 
         [Required]
-        [Display(Name = "Item Price")]
-        public double ItemPrice { get; set; }
+        [Display(Name = "Product Price")]
+        public double ProductPrice { get; set; }
 
         [Required]
-        [Display(Name = "Item Condition")]
-        public string ItemCondition { get; set; }
+        [Display(Name = "Product Condition")]
+        public string ProductCondition { get; set; }
         public int Quantity { get; set; }
 
-
+        [Display(Name = "Product Image")]
+        public string ProductImage { get; set; }
 
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
-        [Display(Name = "Category")]
+        [Display(Name = "Category ID")]
         public int CategoryId { get; set; }
 
-       
+        [Display(Name = "Store Name")]
+        public string StoreName { get; set; }
+
+        [Display(Name = "Store ID")]
+        public int StoreId { get; set; }
+
+
 
     }
 }

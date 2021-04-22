@@ -64,6 +64,14 @@
     <Compile Include="ItemModels\ItemList.cs" />
     <Compile Include="ItemModels\ItemShortList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewModels\ReviewCreate.cs" />
+    <Compile Include="ReviewModels\ReviewDetails.cs" />
+    <Compile Include="ReviewModels\ReviewEdit.cs" />
+    <Compile Include="ReviewModels\ReviewListItem.cs" />
+    <Compile Include="StoreModels\StoreCreate.cs" />
+    <Compile Include="StoreModels\StoreDetails.cs" />
+    <Compile Include="StoreModels\StoreEdit.cs" />
+    <Compile Include="StoreModels\StoreListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

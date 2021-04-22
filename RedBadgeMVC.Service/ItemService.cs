@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using RedBadgeMVC.Data;
 using RedBadgeMVC.Models.ItemModels;
+using RedBadgeMVC.Models.ReviewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,24 +22,28 @@ namespace RedBadgeMVC.Service
         }
 
         //Create an instance of Item
-        public async Task<bool> CreateItem(ItemCreate item)
+        public async Task<bool> CreateItem(ProductCreate item)
         {
-            var entity = new Item()
+            var entity = new Product()
             {
                 OwnerID = _userId, //We want the user who creates the note to be the user who is logged in
-                ItemName = item.ItemName,
-                ItemDescription = item.ItemDescription,
-                ItemPrice = item.ItemPrice,
-                ItemCondition = item.ItemCondition,
+                ProductName = item.ProductName,
+                ProductDescription = item.ProductDescription,
+                ProductPrice = item.ProductPrice,
+                ItemCondition = item.ProductCondition,
                 Quantity=item.Quantity,
                CategoryId=item.CategoryId,
               CategoryName=item.CategoryName,
-               
-                
+              StoreId=item.StoreId,
+              StoreName=item.StoreName,
+                ProductImage = item.ProductImage
+
+
+
             };
             using (var ctx = new ApplicationDbContext())// Access database
             {
-                ctx.Items.Add(entity);// access items Table and add items
+                ctx.Products.Add(entity);// access items Table and add items
 
                 return await ctx.SaveChangesAsync() == 1;
             }
@@ -46,48 +51,60 @@ namespace RedBadgeMVC.Service
         
 
         //See all the Items 
-        public async Task<IEnumerable<ItemList>> GetAllItemsAsync()
+        public async Task<IEnumerable<ProductList>> GetAllItemsAsync()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = await ctx.Items.Where(e => e.OwnerID == _userId)
-                    .Select(e => new ItemList
-                {
-                    ItemId=e.ItemId,
-                    ItemName = e.ItemName,
-                    ItemPrice = e.ItemPrice,
+                var query = await ctx.Products.Where(e => e.OwnerID == _userId)
+                    .Select(e => new ProductList
+                    {
+                        ProductId = e.ProductId,
+                        ProductName = e.ProductName,
+                        ProductPrice = e.ProductPrice,
                     Quantity=e.Quantity,
-                   CategoryName=e.CategoryName,
-                    
-                    
-                }).ToListAsync();
+                   CategoryName=e.Category.CategoryName,
+                        ProductImage = e.ProductImage,
+                   
+                  
 
-                return query.OrderBy(e=> e.ItemId);
+
+                    }).ToListAsync();
+
+                return query.OrderBy(e=> e.ProductId);
             }
         }
 
         //See Details
 
-        public async Task<ItemDetails> GetItemByIdAsync(int id)
+        public async Task<ProductDetails> GetItemByIdAsync(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =await 
                     ctx
-                    .Items
-                    .Where(e => e.ItemId == id && e.OwnerID == _userId).FirstOrDefaultAsync();
+                    .Products
+                    .Where(e => e.ProductId == id && e.OwnerID == _userId).FirstOrDefaultAsync();
 
                 return
-                    new ItemDetails
+                    new ProductDetails
                     {
-                        ItemId=entity.ItemId,
-                        ItemName = entity.ItemName,
-                        ItemDescription = entity.ItemDescription,
-                        ItemPrice = entity.ItemPrice,
-                        ItemCondition = entity.ItemCondition,
+                        ProductId = entity.ProductId,
+                        ProductName = entity.ProductName,
+                        ProductDescription = entity.ProductDescription,
+                        ProductPrice = entity.ProductPrice,
+                        ProductCondition = entity.ItemCondition,
                         CategoryName=entity.CategoryName,
                         CategoryId = entity.CategoryId,
                         Quantity=entity.Quantity,
+                        StoreId = entity.StoreId,
+                        StoreName = entity.StoreName,
+                        ItemImage = entity.ProductImage,
+                        Reviews = entity.Reviews
+                        .Select(z => new ReviewListItem
+                         {
+                            ReviewId=z.ReviewId,
+                            Reviews=z.Reviews
+                         }).ToList(),
 
 
                     };
@@ -95,19 +112,20 @@ namespace RedBadgeMVC.Service
         }
        
 
-        public async Task<bool> UpdateItem(ItemEdit item)
+        public async Task<bool> UpdateItem(ProductEdit item)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = await ctx.Items.Where(e => e.ItemId == item.ItemId && e.OwnerID == _userId).FirstOrDefaultAsync();
-                entity.ItemId = entity.ItemId;
-                entity.ItemName = item.ItemName;
-                entity.ItemDescription = item.ItemDescription;
-                entity.ItemPrice = item.ItemPrice;
-                entity.ItemCondition = item.ItemCondition;
+                var entity = await ctx.Products.Where(e => e.ProductId == item.ProductId && e.OwnerID == _userId).FirstOrDefaultAsync();
+                entity.ProductId = entity.ProductId;
+                entity.ProductName = item.ProductName;
+                entity.ProductDescription = item.ProductDescription;
+                entity.ProductPrice = item.ProductPrice;
+                entity.ItemCondition = item.ProductCondition;
                 entity.CategoryId = item.CategoryId;
                 entity.Quantity = item.Quantity;
-            
+                entity.StoreId = item.StoreId;
+                entity.ProductImage = item.ProductImage;
 
                 return await ctx.SaveChangesAsync() == 1;
             }
@@ -117,9 +135,9 @@ namespace RedBadgeMVC.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity= await ctx.Items.Where(e => e.ItemId== itemId && e.OwnerID == _userId).FirstOrDefaultAsync();//to return the first element of a sequence or a default value if element isn't there.
+                var entity= await ctx.Products.Where(e => e.ProductId == itemId && e.OwnerID == _userId).FirstOrDefaultAsync();//to return the first element of a sequence or a default value if element isn't there.
 
-                ctx.Items.Remove(entity);
+                ctx.Products.Remove(entity);
 
                 return await ctx.SaveChangesAsync() == 1;
             };

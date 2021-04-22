@@ -25,15 +25,16 @@ namespace RedBadgeMVCProject.Controllers
         {
             //The ViewBag in ASP.NET MVC is used to transfer temporary data (which is not included in the model) from the controller to the view
 
-
+            //ViewBag.ItemId = await GetItemsAsync();
             var service = CreateCategoryService();
             var model = await service.GetCategoriesAsync();
       
-            return View(model);//That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
+            return View(model); //That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
 
         }
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            ViewBag.ItemId = await GetItemsAsync();
             return View();
         }
 
@@ -51,6 +52,7 @@ namespace RedBadgeMVCProject.Controllers
             {
                 //TempData removes information after it's accessed
                 TempData["SaveResult"] = "Your Category was created.";
+                ViewBag.ItemId = await GetItemsAsync();
 
                 return RedirectToAction("Index"); //returns the user back to the index view
             };
@@ -60,6 +62,7 @@ namespace RedBadgeMVCProject.Controllers
         }
         public async Task<ActionResult> Details(int id)
         {
+            ViewBag.ItemId = await GetItemsAsync();
             var svc = CreateCategoryService();
             var model = await svc.GetCategoryByIdAsync(id);
 
@@ -77,6 +80,7 @@ namespace RedBadgeMVCProject.Controllers
                     CategoryId = detail.CategoryId,
                     CategoryName = detail.CategoryName
                 };
+            ViewBag.ItemId = await GetItemsAsync();
             return View(model);
         }
 
@@ -85,7 +89,7 @@ namespace RedBadgeMVCProject.Controllers
         public async Task<ActionResult> Edit(int id, CategoryEdit model)
         {
             if (!ModelState.IsValid) return View(model);
-
+            ViewBag.ItemId = await GetItemsAsync();
             if (model.CategoryId != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
@@ -134,9 +138,9 @@ namespace RedBadgeMVCProject.Controllers
                                         e =>
                                             new SelectListItem
                                             {
-                                                Value = e.ItemId.ToString(),
+                                                Value = e.ProductId.ToString(),
 
-                                                Text = e.ItemName,
+                                                Text = e.ProductName,
                                                 
                                             }
                                         ).ToList();
