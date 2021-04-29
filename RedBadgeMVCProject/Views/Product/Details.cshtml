@@ -58,13 +58,13 @@
             @Html.DisplayFor(model => model.Quantity)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CategoryId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -82,22 +82,39 @@
             @Html.DisplayFor(model => model.StoreName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.StoreId)
-        </dd>
+        </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ItemImage)
-        </dt>
+        </dt>*@
+        
+        
+          
+        <hr />
+        <h4>Reviews</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @foreach (var item in Model.Reviews)
+            {
 
-        <dd>
-            @Html.DisplayFor(model => model.ItemImage)
-        </dd>
+                @*<dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
+                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>*@
 
+                <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
+                <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
+
+                @*<dd></dd>
+                <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item. }, null)</dd>
+                <br />*@
+            }
+
+        </dl>
     </dl>
 </div>
 <p>

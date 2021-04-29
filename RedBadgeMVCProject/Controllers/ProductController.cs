@@ -30,9 +30,20 @@ namespace RedBadgeMVCProject.Controllers
         {
 
             var service = CreateItemService();
-            var model = await service.GetAllItemsAsync();
+            ViewBag.products = await CreateItemService().GetAllItemsAsync();
+           var model = await service.GetAllItemsAsync();
 
-            return View(model);//That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
+            return View(model);
+
+            ////get the product model data
+            //ProductModel productModel = new ProductModel();
+            //var service = CreateItemService();
+            //ViewBag.products = productModel.findAll();
+            //var model = await service.GetAllItemsAsync();
+
+            //return View(model);
+
+            //That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
 
         }
 
@@ -92,8 +103,10 @@ namespace RedBadgeMVCProject.Controllers
         }
         public async Task<ActionResult> Details(int id)
         {
+            ViewBag.ReviewId = await GetReviewsAsync();
             var svc = CreateItemService();
             var model = await svc.GetItemByIdAsync(id);
+         
 
             return View(model);
         }
@@ -199,6 +212,43 @@ namespace RedBadgeMVCProject.Controllers
                                                 Value = e.StoreId.ToString(),
 
                                                 Text = e.StoreName
+                                            }
+                                        ).ToList();
+
+            return catSelectList;
+        }
+      
+        public async Task<IEnumerable<SelectListItem>> GetReviewsAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var Service = new ReviewService(userId);
+            var List = await Service.GetReviewAsync();
+
+            var reviewSelectList = List.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.ReviewId.ToString(),
+                                                Text = e.Reviews
+                                            }
+                                        ).ToList();
+
+            return reviewSelectList;
+        }
+      
+        public async Task<IEnumerable<SelectListItem>> GetProductAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var categoryService = new ItemService(userId);
+            var categoryList = await categoryService.GetAllItemsAsync();
+
+            var catSelectList = categoryList.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.ProductId.ToString(),
+
+                                                Text = e.ProductName
                                             }
                                         ).ToList();
 

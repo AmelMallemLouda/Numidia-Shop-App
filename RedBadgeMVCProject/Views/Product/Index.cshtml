@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Our Products</h2>
 @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { enctype = "multipart/form-data" }))
 {
     <p>
@@ -16,9 +16,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductImage)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductId)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
@@ -41,9 +41,9 @@
                 <td>
                     <img src="~/Image/@item.ProductImage" height="40" width="60" />
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductId)
-                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ProductId)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
@@ -56,7 +56,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
+                <td>
 
+                    @if (item.Quantity > 0)
+                    {
+                        <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
+
+                        @*<p>Available</p>*@
+                    }
+                    else
+                    {
+                        <h4>Sold Out </h4>
+                    }
+                </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
@@ -67,5 +79,18 @@
 
 
     </table>
+
+    <style>
+        h2 {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+        p {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+    </style>
 }
 

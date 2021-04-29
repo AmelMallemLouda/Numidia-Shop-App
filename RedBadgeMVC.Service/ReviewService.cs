@@ -40,7 +40,7 @@ namespace RedBadgeMVC.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = await ctx.Reviews.Where(e => e.OwnerID == _userId)
+                var query = await ctx.Reviews/*.Where(e => e.OwnerID == _userId)*/
                     .Select(e => new ReviewListItem
                     {
                         ReviewId = e.ReviewId,
@@ -63,7 +63,7 @@ namespace RedBadgeMVC.Service
                 var entity = await
                     ctx
                         .Reviews
-                        .Where(e => e.ReviewId == id && e.OwnerID == _userId).FirstOrDefaultAsync();
+                        .Where(e => e.ReviewId == id /*&& e.OwnerID == _userId*/).FirstOrDefaultAsync();
                       
                 return
                     new ReviewDetails
@@ -86,6 +86,7 @@ namespace RedBadgeMVC.Service
                         .Where(e => e.ReviewId == note.ReviewId && e.OwnerID == _userId)
                         .FirstOrDefaultAsync();
                 entity.Reviews = note.Reviews;
+                //entity.ProductId = note.ItemId;
 
                 return await ctx.SaveChangesAsync() == 1;
             }

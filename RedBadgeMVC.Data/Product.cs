@@ -21,11 +21,15 @@ namespace RedBadgeMVC.Data
 
         [Required]
         [MinLength(10, ErrorMessage = "Description cannot be less than 10")]
+
+        [Display(Name = "Product Discription ")]
         public string ProductDescription { get; set; }
 
         [Required]
         public double ProductPrice { get; set; }
         public Guid OwnerID { get; set; }
+
+        [Display(Name = "Product Condition ")]
         [Required]
         public string ItemCondition { get; set; }
 
@@ -36,6 +40,7 @@ namespace RedBadgeMVC.Data
 
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
+
         [Display(Name = "Store Name")]
         public string StoreName { get; set; }
 
@@ -52,8 +57,16 @@ namespace RedBadgeMVC.Data
         public virtual Store Store { get; set; }
 
         public virtual List<Review> Reviews { get; set; } = new List<Review>();
+        //public List<Product> products { get; set; }
+        //public List<Product> findAll()
+        //{
+        //    return products;
+        //}
 
-
+        //public Product find(int id)
+        //{
+        //    return products.Single(p => p.ProductId.Equals(id));
+        //}
 
     }
 }

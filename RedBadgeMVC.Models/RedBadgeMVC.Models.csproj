@@ -58,6 +58,8 @@
     <Compile Include="CategoryModels\CategoryDetails.cs" />
     <Compile Include="CategoryModels\CategoryEdit.cs" />
     <Compile Include="CategoryModels\CategoryListItem.cs" />
+    <Compile Include="Home\HomeIndexViewModel.cs" />
+    <Compile Include="Home\Item.cs" />
     <Compile Include="ItemModels\ItemCreate.cs" />
     <Compile Include="ItemModels\ItemDetails.cs" />
     <Compile Include="ItemModels\ItemEdit.cs" />
@@ -83,5 +85,6 @@
       <Name>RedBadgeMVC.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

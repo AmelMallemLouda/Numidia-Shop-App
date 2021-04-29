@@ -28,7 +28,7 @@ namespace RedBadgeMVCProject.Controllers
         }
         public async Task<ActionResult> Details(int id)
         {
-
+          
             var svc = CreateReviewService();
             var model = await svc.GetReviewByIdAsync(id);
 
@@ -41,7 +41,7 @@ namespace RedBadgeMVCProject.Controllers
             var service = CreateReviewService();
 
            
-            ViewBag.ItemId = await GetItemsAsync();
+            ViewBag.ProductId = await GetItemsAsync();
             
 
             return View();
@@ -52,7 +52,7 @@ namespace RedBadgeMVCProject.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.ItemId = await GetItemsAsync();
+                ViewBag.ProductId = await GetItemsAsync();
                
 
                 return View(review);
@@ -63,14 +63,12 @@ namespace RedBadgeMVCProject.Controllers
 
             if (await service.CreateReviewAsync(review))
             {
-                TempData["SaveResult"] = "Review was created.";
-                return RedirectToAction("Index");
+                TempData["SaveResult"] = "Your Review was created.";
+                return RedirectToAction("Index"); //returns the user back to the index view
+            };
+            ModelState.AddModelError("", "review could not be created.");//?
+           ViewBag.ProductId = await GetItemsAsync();
 
-            }
-
-            ModelState.AddModelError("", "Review could not be created.");
-            ViewBag.ItemId = await GetItemsAsync();
-           
 
 
             return View(review);
@@ -85,11 +83,11 @@ namespace RedBadgeMVCProject.Controllers
                 {
                     ReviewId = detail.ReviewId,
                     Reviews = detail.Reviews,
-                   ItemName=detail.ItemName
+                   //ItemName=detail.ItemName
 
                 };
 
-            ViewBag.ItemId = await GetItemsAsync();
+            ViewBag.ProductId = await GetItemsAsync();
 
             return View(model);
         }
@@ -102,7 +100,7 @@ namespace RedBadgeMVCProject.Controllers
             if (note.ReviewId != id)
             {
                 ModelState.AddModelError("", "ID Mismatch");
-                ViewBag.ItemId = await GetItemsAsync();
+                ViewBag.ProductId = await GetItemsAsync();
 
                 return View(note);
             }
@@ -112,7 +110,7 @@ namespace RedBadgeMVCProject.Controllers
                 TempData["SaveResult"] = "Review was successfully updated.";
                 return RedirectToAction("Index");
             }
-            ViewBag.ItemId = await GetItemsAsync();
+            ViewBag.ProductId = await GetItemsAsync();
 
             ModelState.AddModelError("", "Menu could not be updated.");
             return View(note);

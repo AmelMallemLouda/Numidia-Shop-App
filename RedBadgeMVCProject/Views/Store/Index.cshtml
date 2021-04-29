@@ -4,16 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Stores</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.StoreId)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.StoreName)
         </th>
@@ -22,9 +22,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.StoreId)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.StoreName)
         </td>
@@ -37,3 +37,16 @@
 }
 
 </table>
+<style>
+    h2 {
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+
+    p {
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+</style>

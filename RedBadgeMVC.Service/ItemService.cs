@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RedBadgeMVC.Data;
+using RedBadgeMVC.Models;
 using RedBadgeMVC.Models.ItemModels;
 using RedBadgeMVC.Models.ReviewModels;
 using System;
@@ -73,7 +74,7 @@ namespace RedBadgeMVC.Service
                 return query.OrderBy(e=> e.ProductId);
             }
         }
-
+      
         //See Details
 
         public async Task<ProductDetails> GetItemByIdAsync(int id)
@@ -142,5 +143,6 @@ namespace RedBadgeMVC.Service
                 return await ctx.SaveChangesAsync() == 1;
             };
         }
+
     }
 }

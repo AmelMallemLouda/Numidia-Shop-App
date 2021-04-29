@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedBadgeMVC.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace RedBadgeMVC.Models.ItemModels
 {
     public class ProductList
     {
+         public List<Product>products { get; set; }
         [Display(Name = "Product ID")]
         public int ProductId { get; set; }
 
@@ -29,6 +31,14 @@ namespace RedBadgeMVC.Models.ItemModels
         //[Display(Name = "Store Name")]
         //public string StoreName { get; set; }
 
+        public List<Product> findAll()
+        {
+            return products;
+        }
 
+        public Product find(int id)
+        {
+            return products.Single(p => p.ProductId.Equals(id));
+        }
     }
 }
