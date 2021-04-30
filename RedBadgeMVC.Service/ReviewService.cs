@@ -26,6 +26,7 @@ namespace RedBadgeMVC.Service
         
                     Reviews = model.Reviews,
                     ProductId = model.ProductId,
+                  
                     OwnerID=_userId
                     
                 };
@@ -46,10 +47,8 @@ namespace RedBadgeMVC.Service
                         ReviewId = e.ReviewId,
                         Reviews = e.Reviews,
                         ItemName = e.Product.ProductName,
-                      
-
-
-
+                       
+              
                     }).ToListAsync();
 
                 return query.OrderBy(e => e.ReviewId);
@@ -71,6 +70,7 @@ namespace RedBadgeMVC.Service
                         ReviewId = entity.ReviewId,
                         Reviews = entity.Reviews,
                         ItemName = entity.Product.ProductName,
+                       
 
                     };
             }

@@ -15,7 +15,6 @@ namespace RedBadgeMVC.Models.ReviewModels
 
         [Display(Name = "Item ID")]
         public int ProductId { get; set; }
-        //[Display(Name = "Item Name")]
-        //public string ItemName { get; set; }
+        
     }
 }

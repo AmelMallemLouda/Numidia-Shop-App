@@ -1,5 +1,6 @@
 ﻿using RedBadgeMVC.Data;
 using RedBadgeMVC.Models.ItemModels;
+using RedBadgeMVC.Models.ReviewModels;
 using RedBadgeMVC.Models.StoreModels;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,9 @@ namespace RedBadgeMVC.Service
             {
                 StoreName = store.StoreName,
                 PhoneNumber = store.PhoneNumber,
+                Address=store.Address,
+                ClosingTime=store.ClosingTime,
+                OpeningTime=store.OpeningTime,
                 Latitude = store.Latitude,
                 Longitude = store.Longitude
 
@@ -48,6 +52,9 @@ namespace RedBadgeMVC.Service
                                     {
                                         StoreId = e.StoreId,
                                         StoreName = e.StoreName,
+                                        Address=e.Address,
+                                        OpeningTime=e.OpeningTime,
+                                        ClosingTime=e.ClosingTime,
                                         Items = e.Products
                                 .Select(
                                     x => new ProductShortList
@@ -78,11 +85,19 @@ namespace RedBadgeMVC.Service
                     PhoneNumber = entity.PhoneNumber,
                     Latitude = entity.Latitude,
                     Longitude = entity.Longitude,
+                    Address=entity.Address,
+                    OpeningTime=entity.OpeningTime,
+                    ClosingTime=entity.ClosingTime,
                     Items = entity.Products.Select(z => new ProductShortList
                     {
                         ProductId = z.ProductId,
                         Name = z.ProductName,
                         Price = z.ProductPrice
+                    }).ToList(),
+                    Reviews=entity.Reviews.Select(z => new ReviewListItem
+                    {
+                        ReviewId = z.ReviewId,
+                        Reviews = z.Reviews
                     }).ToList(),
 
                 };
@@ -102,6 +117,10 @@ namespace RedBadgeMVC.Service
                 entity.PhoneNumber = store.PhoneNumber;
                 entity.Latitude = store.Latitude;
                 entity.Longitude = store.Longitude;
+                entity.Address = store.Address;
+                entity.OpeningTime = store.OpeningTime;
+                entity.ClosingTime = store.ClosingTime;
+                
 
                 return await ctx.SaveChangesAsync() == 1;
             }

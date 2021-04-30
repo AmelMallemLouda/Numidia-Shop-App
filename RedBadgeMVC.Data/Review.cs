@@ -18,13 +18,9 @@ namespace RedBadgeMVC.Data
         [Required]
         public Guid OwnerID { get; set; }
 
-        //[Display(Name = "Item Name")]
-        //public string ItemName { get; set; }
-
         [ForeignKey(nameof(Product))]
         [Required]
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
-
     }
 }

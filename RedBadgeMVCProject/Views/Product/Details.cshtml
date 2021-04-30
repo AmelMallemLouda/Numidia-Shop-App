@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2> Product Details</h2>
 
 <div>
-    <h4>ItemDetails</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -89,15 +89,15 @@
         @*<dd>
             @Html.DisplayFor(model => model.StoreId)
         </dd>*@
-
-        @*<dt>
+        <br />
+        <dt>
             @Html.DisplayNameFor(model => model.ItemImage)
-        </dt>*@
-        
-        
-          
+        </dt>
+
+        <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
+
         <hr />
-        <h4>Reviews</h4>
+        <h2>Reviews</h2>
         <hr />
         <dl class="dl-horizontal">
             @foreach (var item in Model.Reviews)
@@ -121,3 +121,16 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style>
+    h2{
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+
+    p {
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+</style>

@@ -94,11 +94,11 @@ namespace RedBadgeMVC.Service
                         ProductDescription = entity.ProductDescription,
                         ProductPrice = entity.ProductPrice,
                         ProductCondition = entity.ItemCondition,
-                        CategoryName=entity.CategoryName,
+                        CategoryName=entity.Category.CategoryName,
                         CategoryId = entity.CategoryId,
                         Quantity=entity.Quantity,
                         StoreId = entity.StoreId,
-                        StoreName = entity.StoreName,
+                        StoreName = entity.Store.StoreName,
                         ItemImage = entity.ProductImage,
                         Reviews = entity.Reviews
                         .Select(z => new ReviewListItem

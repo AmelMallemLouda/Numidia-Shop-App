@@ -14,6 +14,11 @@ namespace RedBadgeMVC.Models.StoreModels
 
         [Display(Name = "Store Name")]
         public string StoreName { get; set; }
+
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string OpeningTime { get; set; }
+        public string ClosingTime { get; set; }
         public virtual List<ProductShortList> Items { get; set; } = new List<ProductShortList>();
     }
 }

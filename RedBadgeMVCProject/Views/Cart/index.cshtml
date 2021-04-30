@@ -12,10 +12,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
 
-    <h3>Cart Page</h3>
+    <h3><i><b>Your Shopping Cart</b></i> <i style="font-size:100px" class="fa">&#xf07a;</i></h3>
+    <h4><i>Cart:</i></h4>
     <table class="table" cellpadding="2" cellspacing="2" border="1">
         <tr>
             <th>Option</th>
@@ -35,7 +41,7 @@
                     <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.ProductId })">Remove</a></td>
                     <td>@item.Product.ProductId</td>
                     <td>@item.Product.ProductName</td>
-                    <td><img src="~/Image/@item.Product.ProductImage" width="60" /> </td>
+                    <td><img src="~/Image/@item.Product.ProductImage" width="100" /> </td>
                     <td>@item.Product.ProductPrice</td>
                     <td>@item.Quantity</td>
                     <td>@(item.Product.ProductPrice * item.Quantity)</td>
@@ -66,6 +72,17 @@
 <style>
     .table {
         width: 100%
+    }
+    h4 {
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+
+    p {
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
     }
 </style>
 

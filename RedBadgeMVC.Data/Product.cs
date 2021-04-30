@@ -57,16 +57,7 @@ namespace RedBadgeMVC.Data
         public virtual Store Store { get; set; }
 
         public virtual List<Review> Reviews { get; set; } = new List<Review>();
-        //public List<Product> products { get; set; }
-        //public List<Product> findAll()
-        //{
-        //    return products;
-        //}
-
-        //public Product find(int id)
-        //{
-        //    return products.Single(p => p.ProductId.Equals(id));
-        //}
+      
 
     }
 }

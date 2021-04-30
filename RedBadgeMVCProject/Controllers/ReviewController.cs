@@ -40,9 +40,10 @@ namespace RedBadgeMVCProject.Controllers
         {
             var service = CreateReviewService();
 
-           
+            ViewBag.SyncOrAsync = "Asynchronous";
             ViewBag.ProductId = await GetItemsAsync();
-            
+          
+
 
             return View();
         }
@@ -53,7 +54,7 @@ namespace RedBadgeMVCProject.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ProductId = await GetItemsAsync();
-               
+                
 
                 return View(review);
 
@@ -68,6 +69,7 @@ namespace RedBadgeMVCProject.Controllers
             };
             ModelState.AddModelError("", "review could not be created.");//?
            ViewBag.ProductId = await GetItemsAsync();
+           
 
 
 
@@ -83,7 +85,7 @@ namespace RedBadgeMVCProject.Controllers
                 {
                     ReviewId = detail.ReviewId,
                     Reviews = detail.Reviews,
-                   //ItemName=detail.ItemName
+                 
 
                 };
 
@@ -154,5 +156,8 @@ namespace RedBadgeMVCProject.Controllers
 
             return catSelectList;
         }
+
+       
+        
     }
 }

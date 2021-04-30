@@ -47,6 +47,25 @@ namespace RedBadgeMVCProject.Controllers
 
             return catSelectList;
         }
+
+        //helper method
+        public async Task<IEnumerable<SelectListItem>> GetReviewsAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var Service = new ReviewService(userId);
+            var List = await Service.GetReviewAsync();
+
+            var reviewSelectList = List.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.ReviewId.ToString(),
+                                                Text = e.Reviews
+                                            }
+                                        ).ToList();
+
+            return reviewSelectList;
+        }
         public async Task<ActionResult> Create()
         {
             var service = CreateStoreService();
@@ -103,10 +122,15 @@ namespace RedBadgeMVCProject.Controllers
                     StoreName=update.StoreName,
                     PhoneNumber=update.PhoneNumber,
                     Latitude = update.Latitude,
-                    Longitude = update.Longitude
+                    Longitude = update.Longitude,
+                    Address=update.Address,
+                    OpeningTime=update.OpeningTime,
+                    ClosingTime=update.ClosingTime
+
                 };
-            //ViewBag.SyncOrAsync = "Asynchronous";
-            ViewBag.AreaId = await GetItemAsync();
+     
+            ViewBag.ItemId = await GetItemAsync();
+            ViewBag.ReviewId = await GetReviewsAsync();
 
 
             return View(model);
