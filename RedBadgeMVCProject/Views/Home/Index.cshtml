@@ -1,88 +1,54 @@
-﻿
+﻿<marquee width="60%" direction="left" height="100px">Explore Our Departments</marquee> 
 
-<!DOCTYPE html>
-<html>
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
 
-<body>
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2xvdGhpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="First slide">
+            <div class="carousel-caption">
+                <h3>Clothing</h3>
 
-
-
-   
-
-
-
-    @*<div class="container text-center">*@
-    <h2 class="underline">Explolre Our Departments</h2>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="raw text-center">
-                    <div class="col-md-4">
-                        <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTF8fGNsb3RoZXN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pic1" border="0" width="900" height="500">
-                    </div>
-                    @*<div class="col-md-4">
-                            <h1>
-                             clothing <br>
-                            </h1>
-
-                        </div>*@
-                </div>
             </div>
-            <div class="item">
-                <div class="raw text-center">
-                    <div class="col-md-4">
-                        <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvbWV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pic3" border="0" width="900" height="500">
-                    </div>
-                    @*<div class="col-md-4">
-                            <h1>
-                                Home & Kitchen
-                            </h1>
-                        </div>*@
-                </div>
-            </div>
-            <div class="item">
-                <div class="raw text-center">
-                    <div class="col-md-4">
-                        <img src="https://images.unsplash.com/photo-1531895861208-8504b98fe814?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODl8fGJlYXV0eXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="pic3" border="0" width="900" height="500" ">
-                    </div>
-                    @*<div class="col-md-4">
-                            <h1>
-                                Beauty & Health
-                            </h1>
-                        </div>*@
-                </div>
-            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvbWV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+            <div class="carousel-caption">
+                <h3>Home & Kitchen </h3>
 
-            <div>
-                <!--Start Slider Control-->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="https://images.unsplash.com/photo-1531895861208-8504b98fe814?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODl8fGJlYXV0eXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>Beauty & Health</h3>
+
             </div>
         </div>
     </div>
 
-</body>
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
 
 
-</html>
-<br />
-<div class="container-fluid">
-
-    <a href="https://localhost:44353/Account/Login" class="btn btn-info" role="button">Shop Now!</a>
 </div>
-
-
-
 <style>
-    h2 {
-        text-align: center;
-        color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    marquee {
+        color: black;
+        text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px white;
+        font-size: 25px;
+        font-weight: 700;
     }
+
 </style>

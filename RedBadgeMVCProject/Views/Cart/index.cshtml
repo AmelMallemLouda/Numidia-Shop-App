@@ -41,7 +41,7 @@
                     <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.ProductId })">Remove</a></td>
                     <td>@item.Product.ProductId</td>
                     <td>@item.Product.ProductName</td>
-                    <td><img src="~/Image/@item.Product.ProductImage" width="100" /> </td>
+                    <td><img src="~/Image/@item.Product.ProductImage" width="150" /> </td>
                     <td>@item.Product.ProductPrice</td>
                     <td>@item.Quantity</td>
                     <td>@(item.Product.ProductPrice * item.Quantity)</td>
