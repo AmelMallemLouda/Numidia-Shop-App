@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Our Categories</h2>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+<h2 class="font-effect-shadow-multiple">Our Categories</h2>
 
 @if (User.IsInRole("Seller"))
 {<p>
@@ -65,16 +65,25 @@
 </div>
 
 
-<style>
-    h2 {
-        text-align: center;
-        color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    }
 
-    p {
-        text-align: center;
+    <style >
+
+    h2 {
+        background-color: black;
         color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 550px;
+        margin-right: 550px;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
     }
 </style>

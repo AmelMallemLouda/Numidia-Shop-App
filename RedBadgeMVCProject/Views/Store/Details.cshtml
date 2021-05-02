@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 style="text-align:center"> Store Details</h2>
 
 <div>
-    <h4>StoreDetails</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -98,3 +98,25 @@
     @Html.ActionLink("Edit", "Edit", new {  id = Model.StoreId  }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style>
+
+
+
+    h2 {
+        background-color: black;
+        color: white;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        outline: #4CAF50 solid 10px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
+    }
+</style>

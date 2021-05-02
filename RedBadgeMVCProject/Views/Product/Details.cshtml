@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2> Product Details</h2>
+<h2 class="font-effect-shadow-multiple"> Product Details</h2>
 
 <div>
     
@@ -97,7 +97,7 @@
         <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
 
      
-        <h2>Reviews</h2>
+        <h2 class="font-effect-shadow-multiple">Reviews</h2>
         <hr />
         <dl class="dl-horizontal">
             @foreach (var item in Model.Reviews)
@@ -122,15 +122,23 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 <style>
-    h2{
-        text-align: center;
-        color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    }
 
-    p {
-        text-align: center;
+    h2 {
+        background-color: black;
         color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        outline: #4CAF50 solid 10px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
     }
 </style>
+  

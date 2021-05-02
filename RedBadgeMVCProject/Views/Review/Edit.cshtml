@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="font-effect-shadow-multiple">Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -14,8 +14,7 @@
     <div class="form-horizontal">
 
 
-        <h4>ReviewEdit</h4>
-        <hr />
+      
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ReviewId, htmlAttributes: new { @class = "control-label col-md-2" })

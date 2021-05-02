@@ -9,12 +9,6 @@
     background-color: #28a745 !important;
 }*/
 
-body {
-    width: 300px;
-    height: 200px;
-    background: white;
-    animation: mymove 5s infinite;
-}
 
 @keyframes mymove {
     from {

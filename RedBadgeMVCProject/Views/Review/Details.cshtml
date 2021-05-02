@@ -4,12 +4,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+<h2 class="font-effect-shadow-multiple"> Reviews Details</h2>
 
 <div>
-    <h4>ReviewDetails</h4>
-    <hr />
+
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ReviewId)
@@ -44,3 +44,24 @@
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style>
+
+
+   h2
+    {
+        background-color: black;
+        color: white;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        outline: #4CAF50 solid 10px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+    }
+</style>

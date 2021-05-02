@@ -1,143 +1,109 @@
-﻿@model IEnumerable<RedBadgeMVC.Models.ItemModels.ProductList>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/MyMainLayout.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+@model IEnumerable<RedBadgeMVC.Models.ItemModels.ProductList>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<body>
+    <h2 class="font-effect-shadow-multiple">Our Products</h2>
+    <br />
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { enctype = "multipart/form-data" }))
+    {
 
-<h2>Our Products</h2>
-@using (Html.BeginForm("Index", "Product", FormMethod.Get, new { enctype = "multipart/form-data" }))
-{
+        if (User.IsInRole("Seller"))
+        {<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
 
-    if (User.IsInRole("Seller"))
-    {<p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
     }
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductImage)
-            </th>
-            <th>
-                    @Html.DisplayNameFor(model => model.ProductId)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryName)
-            </th>
 
-            <th></th>
-        </tr>*@
-
-    @*@foreach (var item in Model)
-        {
-           <tr>
-                <td>
-
-                    <img src="~/Image/@item.ProductImage" height="40" width="60" />
-                </td>
-                <td>
-                        @Html.DisplayFor(modelItem => item.ProductId)
-                    </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-
-                   // @if (item.Quantity > 0)
+    <div class=" photo-gallery">
+        <div class="container-fluid">
+            <div class="px-lg-5">
+                <div class="row">
+                    @foreach (var item in Model)
                     {
-                        //<a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>--><!---->-->
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="bg-white img-rounded shadow-sm ">
+                                <br />
+                                <img src="~/Image/@item.ProductImage" height="100" width="120" alt="" class="img-fluid card-img-top" />
 
-                       // <!---->@*<p>Available</p>*@
-    
-
-    //</table>
-
-    @*<style>
-            h2 {
-                text-align: center;
-                color: white;
-                text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-            }
-
-            p {
-                text-align: center;
-                color: white;
-                text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-            }
-        </style>*@
-}
-
-<div class=" photo-gallery">
-    <div class="container-fluid">
-        <div class="px-lg-5">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                    <div class="bg-white img-rounded shadow-sm ">
-                        <br />
-                        <img src="~/Image/@item.ProductImage" height="100" width="120" alt="" class="img-fluid card-img-top" />
-
-                    </div>
+                            </div>
 
 
-                    @if (User.IsInRole("Seller"))
-                    {
+                            @if (User.IsInRole("Seller"))
+                            {
 
-                        <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                                <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                                </div>
+                            }
+                            else
+                            {
+                                @*@if (User.IsInRole("customer"))
+                                    {*@
+                                <div class="p-4">
+                                    <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                                    @*<p class="small mb-0"> Category Type: @Html.DisplayFor(modelItem => item.CategoryName)</p>*@
+                                    <p>Price: $ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
+                                    <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
+                                    <br />
+
+                                </div>
+                                @*}*@
+                            }
+
+
+
+
                         </div>
                     }
-                    else
-                    {
-                        @*@if (User.IsInRole("customer"))
-                    {*@
-                        <div class="p-4">
-                            <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
-                            @*<p class="small mb-0"> Category Type: @Html.DisplayFor(modelItem => item.CategoryName)</p>*@
-                            <p>Price: $ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
-                            <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
-                            <br />
-
-                        </div>
-                        @*}*@
-                    }
-
 
 
 
                 </div>
-                }
-
-
-
             </div>
+
         </div>
+
 
     </div>
 
+    <style>
 
-</div>
-
+            h2 {
+                background-color: black;
+                color: white;
+                vertical-align: top;
+                text-decoration: underline;
+                text-transform: capitalize;
+                text-shadow: 1px 1px;
+                font-style: italic;
+                font-size: 30px;
+                font-family: "Sofia", sans-serif;
+                border: 2px solid black;
+              /*  outline: #4CAF50 solid 10px;*/
+                margin-left: 550px;
+                margin-right:550px;
+                padding: 20px;
+                text-align: center;
+                text-align: center;
+            }
+        </style>
+</body>
