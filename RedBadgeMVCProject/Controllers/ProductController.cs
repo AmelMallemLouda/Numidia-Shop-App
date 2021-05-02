@@ -31,7 +31,7 @@ namespace RedBadgeMVCProject.Controllers
 
             var service = CreateItemService();
             ViewBag.products = await CreateItemService().GetAllItemsAsync();
-           var model = await service.GetAllItemsAsync();
+            var model = await service.GetAllItemsAsync();
 
             return View(model);
 
@@ -52,8 +52,8 @@ namespace RedBadgeMVCProject.Controllers
         {
             var service = CreateItemService();
 
-                ViewBag.StoreId = await GetStoresAsync();
-                ViewBag.CategoryId = await GetCategoriesAsync();
+            ViewBag.StoreId = await GetStoresAsync();
+            ViewBag.CategoryId = await GetCategoriesAsync();
 
             return View();
         }
@@ -61,17 +61,17 @@ namespace RedBadgeMVCProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]//The basic purpose of ValidateAntiForgeryToken attribute is to prevent cross-site request forgery attacks
-        public async Task<ActionResult> Create(ProductCreate model,HttpPostedFileBase file)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
+        public async Task<ActionResult> Create(ProductCreate model, HttpPostedFileBase file)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
         {
             string pic = null;
             if (file != null) //file can't be null
             {
 
                 //file path
-                 pic = Path.GetFileName(file.FileName);
+                pic = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Image/"), pic);
                 string filepathToSave = "Image/" + pic;
-                
+
                 // file is uploaded
                 file.SaveAs(path);
                 ViewBag.ImagePath = filepathToSave;
@@ -80,14 +80,14 @@ namespace RedBadgeMVCProject.Controllers
             if (!ModelState.IsValid)
             {
                 //synchronous action method that is used to display a list
-                
+
                 ViewBag.CategoryId = await GetCategoriesAsync();
                 ViewBag.StoreId = await GetStoresAsync();
 
                 return View(model);//makes sure the model is valid
             }
             var service = CreateItemService();
-           
+
             if (await service.CreateItem(model))
             {
                 //TempData removes information after it's accessed
@@ -106,7 +106,7 @@ namespace RedBadgeMVCProject.Controllers
             ViewBag.ReviewId = await GetReviewsAsync();
             var svc = CreateItemService();
             var model = await svc.GetItemByIdAsync(id);
-         
+
 
             return View(model);
         }
@@ -121,9 +121,9 @@ namespace RedBadgeMVCProject.Controllers
                     ProductDescription = update.ProductDescription,
                     ProductPrice = update.ProductPrice,
                     ProductCondition = update.ProductCondition,
-                    Quantity=update.Quantity,
-                    CategoryId=update.CategoryId,
-                   
+                    Quantity = update.Quantity,
+                    CategoryId = update.CategoryId,
+
                 };
             ViewBag.CategoryId = await GetCategoriesAsync();
 
@@ -145,7 +145,7 @@ namespace RedBadgeMVCProject.Controllers
             }
             var service = CreateItemService();
 
-            if (await service .UpdateItem(item))
+            if (await service.UpdateItem(item))
             {
                 TempData["SaveResult"] = "Your note was updated.";
                 return RedirectToAction("Index");
@@ -191,7 +191,7 @@ namespace RedBadgeMVCProject.Controllers
                                             new SelectListItem
                                             {
                                                 Value = e.CategoryId.ToString(),
-                                               
+
                                                 Text = e.CategoryName
                                             }
                                         ).ToList();
@@ -217,38 +217,19 @@ namespace RedBadgeMVCProject.Controllers
 
             return catSelectList;
         }
-      
         public async Task<IEnumerable<SelectListItem>> GetReviewsAsync()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var Service = new ReviewService(userId);
-            var List = await Service.GetReviewAsync();
-
-            var reviewSelectList = List.Select(
-                                        e =>
-                                            new SelectListItem
-                                            {
-                                                Value = e.ReviewId.ToString(),
-                                                Text = e.Reviews
-                                            }
-                                        ).ToList();
-
-            return reviewSelectList;
-        }
-      
-        public async Task<IEnumerable<SelectListItem>> GetProductAsync()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var categoryService = new ItemService(userId);
-            var categoryList = await categoryService.GetAllItemsAsync();
+            var categoryService = new ReviewService(userId);
+            var categoryList = await categoryService.GetReviewAsync();
 
             var catSelectList = categoryList.Select(
                                         e =>
                                             new SelectListItem
                                             {
-                                                Value = e.ProductId.ToString(),
+                                                Value = e.ReviewId.ToString(),
 
-                                                Text = e.ProductName
+                                                Text = e.Reviews
                                             }
                                         ).ToList();
 
