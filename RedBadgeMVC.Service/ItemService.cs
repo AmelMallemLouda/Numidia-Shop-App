@@ -86,7 +86,7 @@ namespace RedBadgeMVC.Service
                     var entity = await
                         ctx
                         .Products
-                        .Where(e => e.ProductId == id && e.OwnerID == _userId).FirstOrDefaultAsync();
+                        .Where(e => e.ProductId == id ).FirstOrDefaultAsync();
 
                     return
                         new ProductDetails

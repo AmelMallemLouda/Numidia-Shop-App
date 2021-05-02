@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedBadgeMVC.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace RedBadgeMVC.Models.ItemModels
         public string Name { get; set; }
         [Display(Name = "Product Price")]
         public double Price { get; set; }
+        public Product Product { get; set; }
+        public string ItemImage { get; set; }
     }
 }

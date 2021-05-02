@@ -5,56 +5,70 @@
 }
 
 <h2>Stores</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.StoreName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpeningTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClosingTime)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.StoreId)
-        </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.StoreName)
-    <td>
-        @Html.DisplayFor(modelItem => item.Address)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OpeningTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ClosingTime)
-    </td>
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.StoreId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.StoreId })
-    </td>
-</tr>
+@if (User.IsInRole("Seller"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
 
-</table>
+<div class=" photo-gallery">
+    <div class="container-fluid">
+        <div class="px-lg-5">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="bg-white img-rounded shadow-sm  " style="text-decoration: underline">
+                            <br />
+                            Store Name:  @Html.DisplayFor(modelItem => item.StoreName)
+
+                        </div>
+                        <br />
+                        <div>
+                            Store Address: @Html.DisplayFor(modelItem => item.Address)
+                        </div>
+                        <div>
+                            Store Hours:  @Html.DisplayFor(modelItem => item.OpeningTime)-
+                            @Html.DisplayFor(modelItem => item.ClosingTime)
+                        </div>
+                        <br />
+                        @if (User.IsInRole("Seller"))
+                        {
+
+                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.StoreId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.StoreId })
+                            </div>
+                        }
+                        else
+                        {
+                            @*@if (User.IsInRole("customer"))
+                                {*@
+                            <div class="p-4">
+                                @Html.ActionLink("Details", "Details", new { id = item.StoreId })
+                                <br />
+
+                            </div>
+                            @*}*@
+                        }
+
+
+
+
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
 <style>
     h2 {
         text-align: center;

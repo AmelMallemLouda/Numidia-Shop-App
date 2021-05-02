@@ -47,6 +47,7 @@ namespace RedBadgeMVC.Service
                         ReviewId = e.ReviewId,
                         Reviews = e.Reviews,
                         ItemName = e.Product.ProductName,
+                        ItemImage=e.Product.ProductImage
                        
               
                     }).ToListAsync();
@@ -70,7 +71,8 @@ namespace RedBadgeMVC.Service
                         ReviewId = entity.ReviewId,
                         Reviews = entity.Reviews,
                         ItemName = entity.Product.ProductName,
-                       
+                        ItemImage = entity.Product.ProductImage,
+
 
                     };
             }

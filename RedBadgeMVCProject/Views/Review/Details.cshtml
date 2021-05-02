@@ -34,7 +34,10 @@
         <dd>
             @Html.DisplayFor(model => model.ItemName)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemImage)
+        </dt>
+        <dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </dd>
     </dl>
 </div>
 <p>

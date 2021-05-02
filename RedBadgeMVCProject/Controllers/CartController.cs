@@ -14,12 +14,10 @@ namespace RedBadgeMVCProject.Controllers
         Product product = new Product();
         public ActionResult Index()
         {
-            if (product.Quantity==0)
-            {
+           
+           
                 return View();
-            }
-            else
-                return View();
+           
         }
 
         public ActionResult Buy(int id)

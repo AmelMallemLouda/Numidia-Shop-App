@@ -16,7 +16,9 @@ namespace RedBadgeMVC.Models.ReviewModels
 
 
 
-        [Display(Name = "Item Name")]
+        [Display(Name = "Product Name")]
         public string ItemName { get; set; }
+        [Display(Name = "Product Image")]
+        public string ItemImage { get; set; }
     }
 }

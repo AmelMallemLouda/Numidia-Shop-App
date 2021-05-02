@@ -13,6 +13,7 @@ namespace RedBadgeMVC.Service
 {
     public class CategoryService
     {
+        Product pro = new Product();
         private readonly Guid _userId;
         public CategoryService(Guid userId)
         {
@@ -44,7 +45,7 @@ namespace RedBadgeMVC.Service
             {
                 var query = await ctx
                             .Categories
-                            .Where(e => e.OwnerID == _userId)
+                            //.Where(e => e.OwnerID == _userId)
                             .Select(
                                 e =>
                                     new CategoryListItem
@@ -77,14 +78,14 @@ namespace RedBadgeMVC.Service
                 var entity = await
                     ctx
                         .Categories
-                        .Where(e => e.CategoryId == id && e.OwnerID == _userId)
+                        .Where(e => e.CategoryId == id /*&& e.OwnerID == _userId*/)
                         .FirstOrDefaultAsync();
                 return
                     new CategoryDetails
                     {
                         CategoryId = entity.CategoryId,
                         CategoryName = entity.CategoryName,
-                        
+                       
                         Items = entity.Products
                                 .Select(
                                     x => new ProductShortList
@@ -92,6 +93,8 @@ namespace RedBadgeMVC.Service
                                         ProductId = x.ProductId,
                                         Name = x.ProductName,
                                         Price=x.ProductPrice,
+                                        ItemImage=x.ProductImage
+                                        
                                     }
                                 ).ToList()
                     };

@@ -20,6 +20,7 @@ namespace RedBadgeMVC.Data
 
         public virtual List<Product> Products { get; set; } = new List<Product>();
 
+        
 
     }
 }

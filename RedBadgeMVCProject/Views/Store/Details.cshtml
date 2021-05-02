@@ -81,6 +81,10 @@
 
                 <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ItemImage)
+                </dt>
+                <dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </dd>
 
                 <dd></dd>
                 <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>

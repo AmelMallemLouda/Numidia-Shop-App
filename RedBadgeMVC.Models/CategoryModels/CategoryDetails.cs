@@ -21,5 +21,7 @@ namespace RedBadgeMVC.Models.CategoryModels
        
         public virtual List<ProductShortList> Items { get; set; } = new List<ProductShortList>();
 
+        public string ItemImage { get; set; }
+
     }
 }

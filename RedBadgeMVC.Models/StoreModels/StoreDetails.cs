@@ -30,6 +30,7 @@ namespace RedBadgeMVC.Models.StoreModels
         public string Address { get; set; }
         public string OpeningTime { get; set; }
         public string ClosingTime { get; set; }
+        public string ItemImage { get; set; }
         public virtual List<ProductShortList> Items { get; set; } = new List<ProductShortList>();
 
         public virtual List<ReviewListItem> Reviews { get; set; } = new List<ReviewListItem>();

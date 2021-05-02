@@ -21,7 +21,7 @@
 <body>
 
     <h3><i><b>Your Shopping Cart</b></i> <i style="font-size:100px" class="fa">&#xf07a;</i></h3>
-    <h4><i>Cart:</i></h4>
+    
     <table class="table" cellpadding="2" cellspacing="2" border="1">
         <tr>
             <th>Option</th>
@@ -39,12 +39,12 @@
 
                 <tr>
                     <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.ProductId })">Remove</a></td>
+                    <td><img src="~/Image/@item.Product.ProductImage" width="150" /> </td>
                     <td>@item.Product.ProductId</td>
                     <td>@item.Product.ProductName</td>
-                    <td><img src="~/Image/@item.Product.ProductImage" width="150" /> </td>
-                    <td>@item.Product.ProductPrice</td>
+                    <td>$ @item.Product.ProductPrice</td>
                     <td>@item.Quantity</td>
-                    <td>@(item.Product.ProductPrice * item.Quantity)</td>
+                    <td>$ @(item.Product.ProductPrice * item.Quantity)</td>
                 </tr>
            
            
@@ -56,9 +56,9 @@
             <td>
                 @{
                     List<Item> cart = (List<Item>)Session["cart"];
-                    var total = cart.Sum(item => item.Product.ProductPrice * item.Quantity);
+                    var total = cart.Sum( item => item.Product.ProductPrice * item.Quantity);
                 }
-                @total
+               $ @total
             </td>
         </tr>
     </table>
@@ -71,7 +71,8 @@
 
 <style>
     .table {
-        width: 100%
+        width: 100%;
+        text-align: center;
     }
     h4 {
         text-align: center;

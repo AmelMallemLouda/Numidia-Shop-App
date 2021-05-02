@@ -6,55 +6,79 @@
 }
 
 <h2>Reviews</h2>
+@if (User.IsInRole("Customer"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        @*<th>
-                @Html.DisplayNameFor(model => model.ReviewId)
-            </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Reviews)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemName)
-        </th>
-        <th></th>
-    </tr>
+<div class=" photo-gallery">
+    <div class="container-fluid">
+        <div class="px-lg-5">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="bg-white img-rounded shadow-sm  ">
+                            <br />
+                            <img src="~/Image/@Html.DisplayFor(modelItem => item.ItemImage)" width="200" />
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.ReviewId)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Reviews)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ReviewId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ReviewId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ReviewId })
-            </td>
-        </tr>
-    }
+                        </div>
+                        <div>
+                           Product Name: @Html.DisplayFor(modelItem => item.ItemName)
+                        </div>
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Reviews)
+                        </div>
+                        <br />
+                        @if (User.IsInRole("Customer"))
+                        {
 
-</table>
-<style>
-    h2 {
-        text-align: center;
-        color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    }
+                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ReviewId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ReviewId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ReviewId })
+                            </div>
+                        }
+                        else
+                        {
+                            @*@if (User.IsInRole("customer"))
+                                {*@
+                            <div class="p-4">
+                                @Html.ActionLink("Details", "Details", new { id = item.ReviewId })
+                                <br />
 
-    p {
-        text-align: center;
-        color: white;
-        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    }
-</style>
+                            </div>
+                            @*}*@
+                        }
+
+
+
+
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+    <style>
+        h2 {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+
+        p {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        }
+    </style>

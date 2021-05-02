@@ -68,7 +68,7 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
         }
-
+      
         //Get
         public async Task<ActionResult> Edit(int id)
         {

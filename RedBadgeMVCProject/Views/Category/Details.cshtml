@@ -10,13 +10,13 @@
     <h4>CategoryDetails</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CategoryId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -25,6 +25,7 @@
         <dd>
             @Html.DisplayFor(model => model.CategoryName)
         </dd>
+
         <hr />
         <h4>Products</h4>
         <hr />
@@ -34,12 +35,16 @@
 
                 <dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Name)</dd>
-               
+
                 <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
-
+                <dt>
+                    @Html.DisplayNameFor(model => model.ItemImage)
+                </dt>
+                <dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="150" /> </dd>
                 <dd></dd>
-                <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item.ProductId }, null)</dd>
+                <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
+
                 <br />
             }
 
