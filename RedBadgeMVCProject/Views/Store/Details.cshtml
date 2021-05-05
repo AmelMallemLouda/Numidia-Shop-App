@@ -1,122 +1,256 @@
-﻿@model RedBadgeMVC.Models.StoreModels.StoreDetails
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Map</title>
 
-@{
-    ViewBag.Title = "Details";
-}
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
+   
+</head>
+<body>
+    @model RedBadgeMVC.Models.StoreModels.StoreDetails
 
-<h2 style="text-align:center"> Store Details</h2>
+    @{
+        ViewBag.Title = "Details";
+    }
 
-<div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StoreId)
-        </dd>
+    <h3 class="font-effect-shadow-multiple"><mark>Welcome to </mark><i>@Html.DisplayFor(model => model.StoreName)</i></h3>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StoreName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OpeningTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OpeningTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ClosingTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ClosingTime)
-        </dd>
-        <h4>Items</h4>
-        <hr />
         <dl class="dl-horizontal">
-            @foreach (var item in Model.Items)
-            {
+            <dt>
+                @Html.DisplayNameFor(model => model.StoreId)
+            </dt>
 
-                <dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>
+            <dd>
+                @Html.DisplayFor(model => model.StoreId)
+            </dd>
 
-                <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ItemImage)
-                </dt>
-                <dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StoreName)
+            </dt>
 
-                <dd></dd>
-                <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
-                <br />
-            }
+            <dd>
+                @Html.DisplayFor(model => model.StoreName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OpeningTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OpeningTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClosingTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClosingTime)
+            </dd>
+
+            <br />
+            <br />
+            <script>
+                // Initialize and add the map
+                function initMap() {
+                    // The location of Uluru
+                    /**/
+                    const uluru = { lat: @Model.Latitude , lng: @Model.Longitude};
+            /**/
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            const contentString =
+
+                "<p><b>@Model.StoreName</b></p>"
+
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
+            });
+                                    }
+            </script>
+
 
         </dl>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.StoreId  }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<style>
-
-
-
-    h2 {
-        background-color: black;
-        color: white;
-        vertical-align: top;
-        text-decoration: underline;
-        text-transform: capitalize;
-        text-shadow: 1px 1px;
-        font-style: italic;
-        font-size: 30px;
-        font-family: "Sofia", sans-serif;
-        border: 2px solid black;
-        outline: #4CAF50 solid 10px;
-        margin: auto;
-        padding: 20px;
-        text-align: center;
-        text-align: center;
+    </div>
+    <br />
+    @if (User.IsInRole("Seller"))
+    {
+        <p class="p">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.StoreId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
     }
-</style>
+    <br />
+    <br />
+    <h4 class="store"> List Of Products</h4>
+    <div class=" photo-gallery">
+        <div class="container-fluid">
+            <div class="px-lg-5">
+                <div class="row">
+                    @foreach (var item in Model.Items)
+                    {
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                      
+                        @if (User.IsInRole("Seller"))
+                        {
+
+                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+
+                                <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
+
+                                <p>Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
+                                <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
+                            </div>
+                        }
+                        else
+                        {
+
+
+                            <div class="p-4">
+
+                                <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
+
+                                <p> Product Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
+                                <h5>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</h5>
+
+                                <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
+                                <br />
+                                <div id="map"></div>
+                            </div>
+
+                        }
+
+
+
+                    </div>
+                    }
+
+
+                    <br />
+                    <br />
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+ 
+    <style>
+
+
+
+        h2 {
+            background-color: #e57979;
+            color: black;
+            vertical-align: top;
+            text-decoration: underline;
+            text-transform: capitalize;
+            text-shadow: 1px 1px;
+            font-style: italic;
+            font-size: 40px;
+            font-family: "Sofia", sans-serif;
+            border: 2px solid black;
+            /*  outline: #4CAF50 solid 10px;*/
+            margin-left: 550px;
+            margin-right: 550px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .store {
+            text-align: center;
+            color: #000000;
+            text-shadow: 2px 2px 4px white;
+            text-decoration: underline;
+            font-size: 30px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .dl-horizontal {
+            background-color: #e57979;
+            margin-left: 400px;
+            margin-right: 400px;
+            font-size: 25px;
+            margin-bottom: 0px;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            outline: white solid 3px;
+            padding-left: 20px;
+            text-align: center;
+        }
+
+        .p {
+            margin-left: 750px;
+            font-size: 25px;
+        }
+
+        .str {
+            font-size: 50px;
+            margin-left: 100px;
+            text-shadow: 2px 2px 8px white;
+            text-decoration: underline;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-top: 20px;
+            text-transform: capitalize;
+        }
+
+        h3 {
+            color: black;
+            vertical-align: top;
+            text-decoration: underline;
+            text-transform: capitalize;
+            text-shadow: 1px 1px;
+            font-style: italic;
+            font-size: 35px;
+            font-family: "Sofia", sans-serif;
+        }
+    </style>
+
+    
+
+    
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    @*Added a google map api key*@
+    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyCdOSdc5ZxZAhsqreUwqmZM-Py5XIWOiKg&callback=initMap&libraries=&v=weekly"
+            async></script>
+</body>
+</html>

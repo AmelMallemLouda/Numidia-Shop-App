@@ -22,6 +22,7 @@ namespace RedBadgeMVCProject.Controllers
         // GET: Review
         public async Task<ActionResult> Index()
         {
+            ViewBag.ReviewId = await GetRvAsync();
             var service = CreateReviewService();
             var model = await service.GetReviewAsync();
             return View(model);
@@ -40,7 +41,7 @@ namespace RedBadgeMVCProject.Controllers
         {
             var service = CreateReviewService();
 
-            ViewBag.SyncOrAsync = "Asynchronous";
+            
             ViewBag.ProductId = await GetItemsAsync();
           
 
@@ -65,7 +66,7 @@ namespace RedBadgeMVCProject.Controllers
             if (await service.CreateReviewAsync(review))
             {
                 TempData["SaveResult"] = "Your Review was created.";
-                return RedirectToAction("Index"); //returns the user back to the index view
+                return RedirectToAction("Index","Product"); //returns the user back to the index view
             };
             ModelState.AddModelError("", "review could not be created.");//?
            ViewBag.ProductId = await GetItemsAsync();
@@ -157,7 +158,24 @@ namespace RedBadgeMVCProject.Controllers
             return catSelectList;
         }
 
-       
-        
+
+        public async Task<IEnumerable<SelectListItem>> GetRvAsync()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var Service = new ReviewService(userId);
+            var List = await Service.GetReviewAsync();
+
+            var revSelectList = List.Select(
+                                        e =>
+                                            new SelectListItem
+                                            {
+                                                Value = e.ReviewId.ToString(),
+
+                                                Text = e.Reviews
+                                            }
+                                        ).ToList();
+
+            return revSelectList;
+        }
     }
 }

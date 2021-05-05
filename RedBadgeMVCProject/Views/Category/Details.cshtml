@@ -4,75 +4,93 @@
     ViewBag.Title = "Details";
 }
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
-<h2 class="font-effect-shadow-multiple" style="text-align:center"> Category Details</h2>
+<h2 class="category" style="text-align:center"> Category Details</h2>
 
 <div>
-   
-    <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <br />
-        <br />
-    
-        <h4 class="font-effect-shadow-multiple" style="text-underline-position"><b><i> Category Products:</i></b></h4>
-        
+    @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { enctype = "multipart/form-data" })) 
+    { 
         <dl class="dl-horizontal">
-            @foreach (var item in Model.Items)
-            {
-
-                <dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>
-
-                <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ItemImage)
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.CategoryId)
                 </dt>
-                <dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="150" /> </dd>
-                <dd></dd>
-                <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
 
-                <br />
-            }
+                <dd>
+                    @Html.DisplayFor(model => model.CategoryId)
+                </dd>*@
 
+            @*<dt>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>*@
+
+            <dd class="Details">
+              @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+            <br />
+            <br />
+
+            <h4 class="font-effect-shadow-multiple" style="text-decoration-style:"><b style="text-decoration:underline"><i style="font-size:40px"> List Of Products:</i></b></h4>
+
+            <dl class="dl-horizontal">
+
+                @foreach (var item in Model.Items)
+                {
+
+                    <dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
+                    <dd > @Html.DisplayFor(modelItem => item.Name)</dd>
+
+                    <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
+                    @*<dt>
+                        @Html.DisplayNameFor(model => model.ItemImage)
+                    </dt>*@
+                    @*<dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage))" width="150" /> </dd>*@
+                    <dd></dd>
+                    <dd>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</dd>
+
+                    <br />
+                }
+
+            </dl>
         </dl>
-    </dl>
+        }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId}) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 <style>
-    h2
-    {
-        background-color: black;
-        color: white;
+     .category {
         vertical-align: top;
         text-decoration: underline;
         text-transform: capitalize;
         text-shadow: 1px 1px;
         font-style: italic;
-        font-size: 30px;
+        font-size: 50px;
         font-family: "Sofia", sans-serif;
         border: 2px solid black;
-      /*  outline: #4CAF50 solid 10px;*/
-        margin: 100px;
-        padding: 2px;
+        outline: #ffffff solid 10px;
+        margin-left: 550px;
+        margin-right: 550px;
+        padding: 20px;
         text-align: center;
     }
+    .Details {
+        color: black;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 50px;
+        font-family: "Sofia", sans-serif;
+      
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 5px;
+        margin-right: 500px;
+        
+    }
     
-
+    h4{
+        text-align:center;
+    }
     </style>

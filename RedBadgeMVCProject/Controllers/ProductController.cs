@@ -110,6 +110,15 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
         }
+        public async Task<ActionResult> Reviews(int id)
+        {
+            ViewBag.ReviewId = await GetReviewsAsync();
+            var svc = CreateItemService();
+            var model = await svc.GetItemByIdAsync(id);
+
+
+            return View(model);
+        }
         public async Task<ActionResult> Edit(int id)//GET method that gives a Seller a View in which they can update the Name, Description....for an item
         {
             var service = CreateItemService();

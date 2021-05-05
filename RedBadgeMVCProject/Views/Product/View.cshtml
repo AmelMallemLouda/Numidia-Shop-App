@@ -1,0 +1,76 @@
+﻿@model RedBadgeMVC.Models.ItemModels.ProductDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="font-effect-shadow-multiple"> Product Details</h2>
+
+<div>
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemImage)
+        </dt>
+
+        <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+
+
+        <h2 class="font-effect-shadow-multiple">Reviews</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            @foreach (var item in Model.Reviews)
+            {
+
+               
+                <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
+                <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
+
+            
+            }
+
+        </dl>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<style>
+
+    h2 {
+        background-color: black;
+        color: white;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 550px;
+        margin-right: 550px;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
+    }
+</style>

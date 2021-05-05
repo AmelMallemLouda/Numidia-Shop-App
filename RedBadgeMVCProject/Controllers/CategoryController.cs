@@ -4,6 +4,7 @@ using RedBadgeMVC.Models.CategoryModels;
 using RedBadgeMVC.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -42,8 +43,23 @@ namespace RedBadgeMVCProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]//The basic purpose of ValidateAntiForgeryToken attribute is to prevent cross-site request forgery attacks
-        public async Task<ActionResult> Create(CategoryCreate model)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
+        public async Task<ActionResult> Create(CategoryCreate model, HttpPostedFileBase file)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
         {
+
+            string pic = null;
+            if (file != null) //file can't be null
+            {
+
+                //file path
+                pic = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Image/"), pic);
+                string filepathToSave = "Image/" + pic;
+
+                // file is uploaded
+                file.SaveAs(path);
+                ViewBag.ImagePath = filepathToSave;
+            }
+            model.CategoryImage = pic;
             if (!ModelState.IsValid) return View(model);//makes sure the model is valid
 
             var service = CreateCategoryService();
@@ -60,9 +76,17 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
         }
+        private ItemService CreateItemService()// we use this method to call the service methods
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());// grabs the current userId
+
+            var service = new ItemService(userId);
+            return service;
+        }
         public async Task<ActionResult> Details(int id)
         {
-            ViewBag.ItemId = await GetItemsAsync();
+
+            ViewBag.ItemId = await CreateItemService().GetAllItemsAsync();
             var svc = CreateCategoryService();
             var model = await svc.GetCategoryByIdAsync(id);
 

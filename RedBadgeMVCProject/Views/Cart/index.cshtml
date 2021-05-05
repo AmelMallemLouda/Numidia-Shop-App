@@ -20,8 +20,8 @@
 </head>
 <body>
 
-    <h3 class="font-effect-shadow-multiple"><i><b>Your Shopping Cart</b></i> <i style="font-size:100px" class="fa">&#xf07a;</i></h3>
-    
+    <h3 class="ct"><i><b>Your Shopping Cart</b></i> <i style="font-size:100px" class="fa">&#xf07a;</i></h3>
+
     <table class="table" cellpadding="2" cellspacing="2" border="1">
         <tr>
             <th>Option</th>
@@ -35,19 +35,19 @@
         @foreach (Item item in (List<Item>)Session["cart"])
         {
 
-          
 
-                <tr>
-                    <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.ProductId })">Remove</a></td>
-                    <td><img src="~/Image/@item.Product.ProductImage" width="150" /> </td>
-                    <td>@item.Product.ProductId</td>
-                    <td>@item.Product.ProductName</td>
-                    <td>$ @item.Product.ProductPrice</td>
-                    <td>@item.Quantity</td>
-                    <td>$ @(item.Product.ProductPrice * item.Quantity)</td>
-                </tr>
-           
-           
+
+            <tr>
+                <td><a href="@Url.Action("Remove", "Cart", new { id = item.Product.ProductId })">Remove</a></td>
+                <td><img src="~/Image/@item.Product.ProductImage" width="150" /> </td>
+                <td>@item.Product.ProductId</td>
+                <td>@item.Product.ProductName</td>
+                <td>$ @item.Product.ProductPrice</td>
+                <td>@item.Quantity</td>
+                <td>$ @(item.Product.ProductPrice * item.Quantity)</td>
+            </tr>
+
+
 
 
         }
@@ -56,15 +56,25 @@
             <td>
                 @{
                     List<Item> cart = (List<Item>)Session["cart"];
-                    var total = cart.Sum( item => item.Product.ProductPrice * item.Quantity);
+                    var total = cart.Sum(item => item.Product.ProductPrice * item.Quantity);
                 }
-               $ @total
+                $ @total
             </td>
         </tr>
     </table>
     <br>
-    <a href="@Url.Action("Index", "Product")">Continue Shopping</a>
-    
+    <div >
+        <a  href="@Url.Action("Index", "Product")">Continue Shopping</a>
+    </div>
+ 
+    <div class="btn btn-default" style="margin-left:1100px">
+       
+
+        @Html.ActionLink("Checkout","Complete")
+
+
+    </div>
+
 
 </body>
 </html>
@@ -84,6 +94,15 @@
         text-align: center;
         color: white;
         text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+    .ct {
+        color: #d6e058;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+        font-size:25px;
+    }
+   p .btn btn-default{
+        margin-right:0px;
+        margin-left:800px;
     }
 </style>
 

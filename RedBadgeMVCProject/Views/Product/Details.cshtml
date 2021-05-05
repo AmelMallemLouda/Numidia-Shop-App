@@ -95,8 +95,7 @@
         </dt>
 
         <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
-
-     
+       
         <h2 class="font-effect-shadow-multiple">Reviews</h2>
         <hr />
         <dl class="dl-horizontal">
@@ -104,16 +103,16 @@
             {
 
                 @*<dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>*@
+            <dd>@Html.DisplayFor(modelItem => item.Name)</dd>*@
 
                 <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
 
                 @*<dd></dd>
-                <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item. }, null)</dd>
-                <br />*@
+            <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item. }, null)</dd>
+            <br />*@
             }
-
+            
         </dl>
     </dl>
 </div>
@@ -134,8 +133,9 @@
         font-size: 30px;
         font-family: "Sofia", sans-serif;
         border: 2px solid black;
-        outline: #4CAF50 solid 10px;
-        margin: auto;
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 550px;
+        margin-right: 550px;
         padding: 20px;
         text-align: center;
         text-align: center;

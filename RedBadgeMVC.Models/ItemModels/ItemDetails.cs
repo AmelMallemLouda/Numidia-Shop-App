@@ -11,6 +11,7 @@ namespace RedBadgeMVC.Models.ItemModels
 {
     public class ProductDetails
     {
+        [Key]
         [Display(Name = "Item Id")]
         public int ProductId { get; set; }
        

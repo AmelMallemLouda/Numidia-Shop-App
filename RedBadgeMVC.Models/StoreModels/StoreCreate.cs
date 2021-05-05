@@ -24,6 +24,8 @@ namespace RedBadgeMVC.Models.StoreModels
         [Display(Name = "Longitude")]
         public double Longitude { get; set; }
 
+       
+        public int StoreImage { get; set; }
         public string Address { get; set; }
         public string OpeningTime { get; set; }
         public string ClosingTime { get; set; }

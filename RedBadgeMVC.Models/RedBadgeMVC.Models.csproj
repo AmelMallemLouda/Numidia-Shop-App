@@ -70,6 +70,7 @@
     <Compile Include="ReviewModels\ReviewDetails.cs" />
     <Compile Include="ReviewModels\ReviewEdit.cs" />
     <Compile Include="ReviewModels\ReviewListItem.cs" />
+    <Compile Include="ReviewModels\ReviewsShort.cs" />
     <Compile Include="StoreModels\StoreCreate.cs" />
     <Compile Include="StoreModels\StoreDetails.cs" />
     <Compile Include="StoreModels\StoreEdit.cs" />

@@ -20,6 +20,7 @@ namespace RedBadgeMVC.Data
         public string ClosingTime { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+      
         public virtual List<Review> Reviews { get; set; } = new List<Review>();
 
         public virtual List<Product> Products { get; set; } = new List<Product>();

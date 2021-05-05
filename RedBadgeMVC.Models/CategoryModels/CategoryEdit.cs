@@ -14,6 +14,6 @@ namespace RedBadgeMVC.Models.CategoryModels
 
         [Display(Name = "Category Name")]
         public string CategoryName { get; set; }
-
+      
     }
 }

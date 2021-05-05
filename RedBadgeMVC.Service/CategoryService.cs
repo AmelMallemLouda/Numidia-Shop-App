@@ -27,7 +27,8 @@ namespace RedBadgeMVC.Service
             var entity = new Category()
             {
                 OwnerID = _userId,
-                CategoryName =model.CategoryName
+                CategoryName =model.CategoryName,
+                CategoryImage=model.CategoryImage
 
             };
             using (var ctx = new ApplicationDbContext())// Access database
@@ -52,13 +53,19 @@ namespace RedBadgeMVC.Service
                                     {
                                         CategoryId = e.CategoryId,
                                         CategoryName = e.CategoryName,
-                                        Items= e.Products
+                                        CategoryImage = e.CategoryImage,
+
+                                        Items = e.Products
+
+
                                 .Select(
                                     x => new ProductShortList
                                     {
                                         ProductId = x.ProductId,
                                         Name = x.ProductName,
                                         Price = x.ProductPrice,
+                                        
+
                                     }
                                 ).ToList()
 
@@ -85,7 +92,10 @@ namespace RedBadgeMVC.Service
                     {
                         CategoryId = entity.CategoryId,
                         CategoryName = entity.CategoryName,
-                       
+                        CategoryImage = entity.CategoryImage,
+
+
+
                         Items = entity.Products
                                 .Select(
                                     x => new ProductShortList
@@ -93,8 +103,10 @@ namespace RedBadgeMVC.Service
                                         ProductId = x.ProductId,
                                         Name = x.ProductName,
                                         Price=x.ProductPrice,
-                                        ItemImage=x.ProductImage
+                                        ItemImage=x.ProductImage,
                                         
+
+
                                     }
                                 ).ToList()
                     };
@@ -111,6 +123,7 @@ namespace RedBadgeMVC.Service
                         .Where(e => e.CategoryId == category.CategoryId && e.OwnerID == _userId)
                         .FirstOrDefaultAsync();
                 entity.CategoryName= category.CategoryName;
+
 
                 return await ctx.SaveChangesAsync() == 1;
             }

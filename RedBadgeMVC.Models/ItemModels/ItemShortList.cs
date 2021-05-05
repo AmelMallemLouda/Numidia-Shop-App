@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RedBadgeMVC.Models.ItemModels
 {
-   public class ProductShortList
+    public class ProductShortList
     {
         [Display(Name = "Product Id")]
         public int ProductId { get; set; }
@@ -18,5 +18,6 @@ namespace RedBadgeMVC.Models.ItemModels
         public double Price { get; set; }
         public Product Product { get; set; }
         public string ItemImage { get; set; }
+       
     }
 }

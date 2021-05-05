@@ -8,7 +8,7 @@
 <h2 class="font-effect-shadow-multiple">Reviews</h2>
 @if (User.IsInRole("Customer"))
 {
-    <p>
+    <p class="Create">
         @Html.ActionLink("Create New", "Create")
     </p>
 }
@@ -28,6 +28,7 @@
                         <div>
                            Product Name: @Html.DisplayFor(modelItem => item.ItemName)
                         </div>
+                        
                         <div>
                             @Html.DisplayFor(modelItem => item.Reviews)
                         </div>
@@ -43,8 +44,7 @@
                         }
                         else
                         {
-                            @*@if (User.IsInRole("customer"))
-                                {*@
+                           
                             <div class="p-4">
                                 @Html.ActionLink("Details", "Details", new { id = item.ReviewId })
                                 <br />
@@ -71,7 +71,7 @@
 
 <style>
 
-   
+
 
     h2 {
         background-color: black;
@@ -98,4 +98,17 @@
             color: white;
             text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
         }
+    .Create {
+        background-color: black;
+        font-size: 20px;
+        text-align: center;
+        text-decoration: underline;
+        position: fixed;
+        bottom: 200px;
+        right: 0;
+        left: 1210px;
+        width: 135px;
+        border: 3px solid black;
+        padding: 4px;
+    }
     </style>

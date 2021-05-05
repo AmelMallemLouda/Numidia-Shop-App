@@ -1,72 +1,113 @@
-﻿@model IEnumerable<RedBadgeMVC.Models.CategoryModels.CategoryListItem>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/MyMainLayout.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
 
-@{
-    ViewBag.Title = "Index";
-}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
-<h2 class="font-effect-shadow-multiple">Our Categories</h2>
+</head>
+<body>
+    @model IEnumerable<RedBadgeMVC.Models.CategoryModels.CategoryListItem>
 
-@if (User.IsInRole("Seller"))
-{<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
+    @{
+        ViewBag.Title = "Index";
+    }
+    <h2 class="font-effect-shadow-multiple">Our Categories</h2>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
 
 
-<div class=" photo-gallery">
-    <div class="container-fluid">
-        <div class="px-lg-5">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="bg-white img-rounded shadow-sm  " style="text-decoration: underline">
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get, new { enctype = "multipart/form-data" }))
+    {
+
+        if (User.IsInRole("Seller"))
+        {
+
+            <p class="Create">@Html.ActionLink("Create New", "Create")</p>
+
+
+        }
+
+    }
+
+    <br>
+
+    <div class=" photo-gallery">
+        <div class="container-fluid">
+            <div class="px-lg-5">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="font-effect-shadow-multiple" style="font-size:40px">
+                                <br />
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+
+                            </div>
                             <br />
-                            @Html.DisplayFor(modelItem => item.CategoryName)
+                            <div class="bg-white img-rounded shadow-sm ">
+                                <br />
+                                <img src="~/Image/@item.CategoryImage" height="300" width="280" alt="" class="img-fluid card-img-top" />
+                            </div>
+
+
+                            @if (User.IsInRole("Seller"))
+                            {
+
+                                <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+                                </div>
+                            }
+                            else
+                            {
+
+
+                                <div class="p-4">
+                                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId })
+
+                                </div>
+
+                            }
+
+
+
 
                         </div>
-
-                        <br />
-                        @if (User.IsInRole("Seller"))
-                        {
-
-                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
-                            </div>
-                        }
-                        else
-                        {
-                            @*@if (User.IsInRole("customer"))
-                                {*@
-                    <div class="p-4">
-                        @Html.ActionLink("Details", "Details", new { id = item.CategoryId })
-                        
-
-                    </div>
-                            
-                        }
+                    }
 
 
 
+                    <br />
 
-                    </div>
-                }
+                    <br />
+                    <br />
 
-
-
+                </div>
             </div>
+
         </div>
+
 
     </div>
 
+    <br />
 
-</div>
+    <br />
+    <br />
+    <br />
+
+    <br />
+    <br />
+</body>
+</html>
 
 
-
-    <style >
+<style>
 
     h2 {
         background-color: black;
@@ -86,4 +127,21 @@
         text-align: center;
         text-align: center;
     }
+    .Create {
+        background-color: black;
+        
+        font-size: 20px;
+        text-align: center;
+        text-decoration: underline;
+        position:fixed;
+        bottom: 60px;
+        right: 0;
+        left:1210px;
+        width: 135px;
+        border: 3px solid black;
+        padding: 4px;
+        
+    }
+  
+       
 </style>
