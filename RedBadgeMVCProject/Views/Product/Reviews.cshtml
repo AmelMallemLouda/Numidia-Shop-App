@@ -34,21 +34,17 @@
             @Html.DisplayFor(model => model.ProductDescription)
         </dd>
 
-        <h2 class="font-effect-shadow-multiple">Reviews</h2>
-        <hr />
+        <h2 class="font-effect-shadow-multiple" style="text-decoration:underline">Reviews</h2>
+       
         <dl class="dl-horizontal">
             @foreach (var item in Model.Reviews)
             {
 
-                @*<dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Name)</dd>*@
 
                 <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
 
-                @*<dd></dd>
-                <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item. }, null)</dd>
-                <br />*@
+                <br />
             }
 
         </dl>

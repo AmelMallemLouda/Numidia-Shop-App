@@ -19,7 +19,7 @@
         <div class="row" style=">
             <div class="col-lg-6 col-sm-6 col-xs-6">
                 <div class="Logo ">
-                   <h3 class="font-effect-shadow-multiple" ><mark>Online</mark><i>Shopping App</i></h3>
+                   <h3 class="font-effect-shadow-multiple" ><mark>Online</mark><i style="text-shadow: 2px 2px 4px black;">Shopping App</i></h3>
                     <br />
                     <h1 class="font-effect-neon" , style="background-color:black">Numidia Shop</h1>
                 </div>
@@ -35,21 +35,30 @@
                             <li class="dropdown active">
                                 <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Menu <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    @*@if (User.Identity.IsAuthenticated)*@
 
-                                    @*// {*@
+
+
+
                                     <li><a href="https://localhost:44353/">Home</a>
                                     <li>@Html.ActionLink("Products", "Index", "Product")</li>
                                     <li>@Html.ActionLink("Categories", "Index", "Category")</li>
                                     <li>@Html.ActionLink("Stores", "Index", "Store")</li>
-                                    <li>@Html.ActionLink("Review items", "Create", "Review")</li>
-                                    @*}*@
+                                    @if (User.IsInRole("Customer"))
+                                    {
+
+                                        <li>@Html.ActionLink(" Write Review", "Create", "Review")</li>
+                                    }
+
                                 </ul>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("ShoppingCart", "Index", "Cart")</li>
+                            @if (User.IsInRole("Customer"))
+                            {
+                                <li>@Html.ActionLink("ShoppingCart", "Index", "Cart")</li>
+                            }
 
-                           
+                            
+
 
                         </ul>
 

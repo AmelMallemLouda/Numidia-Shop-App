@@ -56,15 +56,16 @@
                             }
                             else
                             {
-                                @*@if (User.IsInRole("customer"))
-                                    {*@
+                               
+                                    
                         <div class="p-4">
                             <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
-                            @*<p class="small mb-0"> Category Type: @Html.DisplayFor(modelItem => item.CategoryName)</p>*@
+                       
                             <p>Price: $ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
                             <p>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</p>
-                            <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>                
                             <p> @Html.ActionLink("Reviews", "Reviews", new { id = item.ProductId })</p>
+                            <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>  
+                            <hr />
                         </div>
                                
                             }

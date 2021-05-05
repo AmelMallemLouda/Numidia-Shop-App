@@ -10,6 +10,7 @@
             /* The height is 400 pixels */
             width: 100%;
             /* The width is the width of the web page */
+            align-content:center;
         }
     </style>
    
@@ -22,18 +23,22 @@
     }
 
 
-    <h3 class="font-effect-shadow-multiple"><mark>Welcome to </mark><i>@Html.DisplayFor(model => model.StoreName)</i></h3>
+    <h3 class="font-effect-shadow-multiple"><mark>Welcome to </mark><i style="text-shadow: 2px 2px 4px black;">@Html.DisplayFor(model => model.StoreName)</i></h3>
     <div>
 
 
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.StoreId)
-            </dt>
+            @if (User.IsInRole("Seller"))
+            {
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StoreId)
+                </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.StoreId)
             </dd>
+            }
 
             <dt>
                 @Html.DisplayNameFor(model => model.StoreName)
@@ -126,40 +131,40 @@
                 <div class="row">
                     @foreach (var item in Model.Items)
                     {
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                      
-                        @if (User.IsInRole("Seller"))
-                        {
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 
-                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                            @if (User.IsInRole("Seller"))
+                            {
 
-                                <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
+                                <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
 
-                                <p>Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
-                                <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
-                            </div>
-                        }
-                        else
-                        {
+                                    <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
 
-
-                            <div class="p-4">
-
-                                <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
-
-                                <p> Product Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
-                                <h5>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</h5>
-
-                                <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
-                                <br />
-                                <div id="map"></div>
-                            </div>
-
-                        }
+                                    <p>Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
+                                    <dd>@Html.ActionLink("View Items", "Details", "Product", new { id = item.ProductId }, null)</dd>
+                                </div>
+                            }
+                            else
+                            {
 
 
+                                <div class="p-4">
 
-                    </div>
+                                    <h5> Product Name: @Html.DisplayFor(modelItem => item.Name) </h5>
+
+                                    <p> Product Price: $ @Html.DisplayFor(modelItem => item.Price)</p>
+                                    <h5>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</h5>
+
+                                    <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
+                                    <br />
+
+                                </div>
+
+                            }
+
+
+                        </div>
+
                     }
 
 
@@ -172,7 +177,10 @@
 
 
     </div>
- 
+    <br />
+    <br />
+    <h3 style="text-shadow: 2px 2px 4px black;"> Store Location</h3>
+    <div id="map"></div>
     <style>
 
 
@@ -244,9 +252,9 @@
         }
     </style>
 
-    
 
-    
+
+
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     @*Added a google map api key*@
