@@ -41,43 +41,44 @@
                 <div class="row">
                     @foreach (var item in Model)
                     {
-                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                            <div class="font-effect-shadow-multiple" style="font-size:40px">
-                                <br />
-                                @Html.DisplayFor(modelItem => item.CategoryName)
-
-                            </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="font-effect-shadow-multiple" style="font-size:40px">
                             <br />
-                            <div class="bg-white img-rounded shadow-sm ">
-                                <br />
-                                <img src="~/Image/@item.CategoryImage" height="300" width="280" alt="" class="img-fluid card-img-top" />
-                            </div>
-
-
-                            @if (User.IsInRole("Seller"))
-                            {
-
-                                <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
-                                </div>
-                            }
-                            else
-                            {
-
-
-                                <div class="p-4">
-                                    @Html.ActionLink("Details", "Details", new { id = item.CategoryId })
-
-                                </div>
-
-                            }
-
-
-
+                            @Html.DisplayFor(modelItem => item.CategoryName)
 
                         </div>
+                        <br />
+                        <div class="bg-white img-rounded shadow-sm ">
+                            <br />
+                            <img src="~/Content/Image/@item.CategoryImage" height="300" width="280" alt="" class="img-fluid card-img-top" />
+                        </div>
+
+
+                        @if (User.IsInRole("Seller"))
+                        {
+
+                            <div class="d-flex alighn-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.CategoryId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+                            </div>
+                        }
+
+                        else
+                        {
+                            <br />
+
+                            <div class="p-4">
+                                @Html.ActionLink("Details", "Details", new { id = item.CategoryId })
+
+                            </div>
+
+                        }
+
+
+
+
+                    </div>
                     }
 
 
@@ -128,20 +129,29 @@
         text-align: center;
     }
     .Create {
-        background-color: black;
-        
+        background-color: lightblue;
+        font-family: "Sofia", sans-serif;
         font-size: 20px;
         text-align: center;
-        text-decoration: underline;
-        position:fixed;
+        position: fixed;
         bottom: 60px;
         right: 0;
-        left:1210px;
+        left: 1210px;
         width: 135px;
         border: 3px solid black;
         padding: 4px;
-        
     }
+    .p-4 {
+        background-color: lightblue;
+        font-size: 20px;
+        text-align: center;
+        font-family: "Sofia", sans-serif;
+        left: 1210px;
+        width: 135px;
+        border: 3px solid white;
+        padding: 4px;
+    }
+
   
        
 </style>

@@ -4,141 +4,161 @@
     ViewBag.Title = "Details";
 }
 
-<h2 class="font-effect-shadow-multiple"> Product Details</h2>
 
-<div>
-    
-  
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductId)
-        </dd>
+    <h2 class="font-effect-shadow-multiple"> Product Details</h2>
+   
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
+    @*<div class="col-xl-3 col-lg-4 col-md-6 mb-4">*@
+        <div class="bg-white img-rounded shadow-sm ">
+            <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="300" /> </td>
+        </div><div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductDescription)
-        </dt>
+                  <dl class="dl-horizontal">
+                      <dt>
+                          @Html.DisplayNameFor(model => model.ProductId)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductDescription)
-        </dd>
+                      <dd>
+                          @Html.DisplayFor(model => model.ProductId)
+                      </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductPrice)
-        </dt>
+                      <dt>
+                          @Html.DisplayNameFor(model => model.ProductName)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductPrice)
-        </dd>
+                      <dd>
+                          @Html.DisplayFor(model => model.ProductName)
+                      </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductCondition)
-        </dt>
+                      <dt>
+                          @Html.DisplayNameFor(model => model.ProductDescription)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductCondition)
-        </dd>
+                      <dd>
+                          @Html.DisplayFor(model => model.ProductDescription)
+                      </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+                      <dt>
+                          @Html.DisplayNameFor(model => model.ProductPrice)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+                      <dd>
+                          @Html.DisplayFor(model => model.ProductPrice)
+                      </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+                      <dt>
+                          @Html.DisplayNameFor(model => model.ProductCondition)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>*@
+                      <dd>
+                          @Html.DisplayFor(model => model.ProductCondition)
+                      </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
+                      <dt>
+                          @Html.DisplayNameFor(model => model.Quantity)
+                      </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StoreName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StoreName)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </dt>*@
-
-        @*<dd>
-            @Html.DisplayFor(model => model.StoreId)
-        </dd>*@
-        <br />
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemImage)
-        </dt>
-
-        <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
-       
-        <h2 class="font-effect-shadow-multiple">Reviews</h2>
-        <hr />
-        <dl class="dl-horizontal">
-            @foreach (var item in Model.Reviews)
+                      <dd>
+                          @Html.DisplayFor(model => model.Quantity)
+                      </dd>
+                      @if (User.IsInRole("Seller"))
             {
 
-                @*<dt>@Html.DisplayNameFor(modelItem => item.Name)</dt>
-            <dd>@Html.DisplayFor(modelItem => item.Name)</dd>*@
-
-                <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
-                <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
-
-                @*<dd></dd>
-            <dd>@Html.ActionLink("View Items", "Details", "Item", new { id = item. }, null)</dd>
-            <br />*@
+                          <dt>
+                              @Html.DisplayNameFor(model => model.CategoryId)
+                          </dt>
+                      <dd>
+                          @Html.DisplayFor(model => model.CategoryId)
+                      </dd>
             }
-            
-        </dl>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<style>
 
-    h2 {
-        background-color: black;
-        color: white;
-        vertical-align: top;
-        text-decoration: underline;
-        text-transform: capitalize;
-        text-shadow: 1px 1px;
-        font-style: italic;
-        font-size: 30px;
-        font-family: "Sofia", sans-serif;
-        border: 2px solid black;
-        /*  outline: #4CAF50 solid 10px;*/
-        margin-left: 550px;
-        margin-right: 550px;
-        padding: 20px;
-        text-align: center;
-        text-align: center;
-    }
-</style>
-  
+                      <dt>
+                          @Html.DisplayNameFor(model => model.CategoryName)
+                      </dt>
+
+                      <dd>
+                          @Html.DisplayFor(model => model.CategoryName)
+                      </dd>
+
+                      <dt>
+                          @Html.DisplayNameFor(model => model.StoreName)
+                      </dt>
+
+                      <dd>
+                          @Html.DisplayFor(model => model.StoreName)
+                      </dd>
+                      @if (User.IsInRole("Seller"))
+                      {
+                          <dt>
+                              @Html.DisplayNameFor(model => model.StoreId)
+                          </dt>
+
+                          <dd>
+                              @Html.DisplayFor(model => model.StoreId)
+                          </dd>
+                      }
+                      <br />
+
+
+                      <h2 class="rev">Reviews</h2>
+                      <hr />
+                      <dl class="dl-horizontal">
+                          @foreach (var item in Model.Reviews)
+                          {
+
+
+
+                              <dt>@Html.DisplayNameFor(modelItem => item.Reviews)</dt>
+                              <dd>@Html.DisplayFor(modelItem => item.Reviews)</dd>
+
+                              
+                          }
+
+                      </dl>
+                  </dl>
+        </div>
+        <br />
+        <br />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        <style>
+            h2 {
+                background-color: black;
+                color: white;
+                vertical-align: top;
+                text-decoration: underline;
+                text-transform: capitalize;
+                text-shadow: 1px 1px;
+                font-style: italic;
+                font-size: 30px;
+                font-family: "Sofia", sans-serif;
+                border: 2px solid black;
+                /*  outline: #4CAF50 solid 10px;*/
+                margin-left: 550px;
+                margin-right: 550px;
+                padding: 20px;
+                text-align: center;
+                text-align: center;
+            }
+            .rev {
+                color: white;
+                vertical-align: top;
+                text-decoration: underline;
+                text-transform: capitalize;
+                text-shadow: 1px 1px;
+                font-style: italic;
+                font-size: 30px;
+                font-family: "Sofia", sans-serif;
+                border: 2px solid black;
+                /*  outline: #4CAF50 solid 10px;*/
+                margin-left: 550px;
+                margin-right: 550px;
+                padding: 20px;
+                text-align: center;
+                text-align: center;
+            }
+        </style>

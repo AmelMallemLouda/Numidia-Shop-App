@@ -40,7 +40,7 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
                             <div class="bg-white img-rounded shadow-sm ">
                                 <br />
-                                <img src="~/Image/@item.ProductImage" height="100" width="120" alt="" class="img-fluid card-img-top" />
+                                <img src="~/Content/Image/@item.ProductImage" height="100" width="120" alt="" class="img-fluid card-img-top" />
 
                             </div>
 
@@ -56,18 +56,18 @@
                             }
                             else
                             {
-                               
-                                    
-                        <div class="p-4">
-                            <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
-                       
-                            <p>Price: $ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
-                            <p>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</p>
-                            <p> @Html.ActionLink("Reviews", "Reviews", new { id = item.ProductId })</p>
-                            <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>  
-                            <hr />
-                        </div>
-                               
+
+
+                                <div class="p-4">
+                                    <h5>@Html.DisplayFor(modelItem => item.ProductName)</h5>
+
+                                    <p>Price: $ @Html.DisplayFor(modelItem => item.ProductPrice)</p>
+                                    <p>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</p>
+                                    <p> @Html.ActionLink("Reviews", "Reviews", new { id = item.ProductId })</p>
+                                    <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
+                                    <hr />
+                                </div>
+
                             }
 
 
@@ -88,30 +88,29 @@
 
     <style>
 
-            h2 {
-                background-color: black;
-                color: white;
-                vertical-align: top;
-                text-decoration: underline;
-                text-transform: capitalize;
-                text-shadow: 1px 1px;
-                font-style: italic;
-                font-size: 30px;
-                font-family: "Sofia", sans-serif;
-                border: 2px solid black;
-              /*  outline: #4CAF50 solid 10px;*/
-                margin-left: 550px;
-                margin-right:550px;
-                padding: 20px;
-                text-align: center;
-                text-align: center;
-            }
+        h2 {
+            background-color: black;
+            color: white;
+            vertical-align: top;
+            text-decoration: underline;
+            text-transform: capitalize;
+            text-shadow: 1px 1px;
+            font-style: italic;
+            font-size: 30px;
+            font-family: "Sofia", sans-serif;
+            border: 2px solid black;
+            /*  outline: #4CAF50 solid 10px;*/
+            margin-left: 550px;
+            margin-right: 550px;
+            padding: 20px;
+            text-align: center;
+            text-align: center;
+        }
 
         .Create {
             background-color: white;
             font-size: 20px;
             text-align: center;
-         
             position: absolute;
             bottom: 170px;
             right: 0;
@@ -121,5 +120,5 @@
             padding: 4px;
             font-style: italic;
         }
-        </style>
-</body>
+    </style>
+</body></body>

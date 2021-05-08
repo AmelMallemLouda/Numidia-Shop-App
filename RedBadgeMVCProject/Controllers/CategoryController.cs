@@ -52,8 +52,8 @@ namespace RedBadgeMVCProject.Controllers
 
                 //file path
                 pic = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Image/"), pic);
-                string filepathToSave = "Image/" + pic;
+                var path = Path.Combine(Server.MapPath("~/Content/Image/"), pic);
+                string filepathToSave = "Content/Image/" + pic;
 
                 // file is uploaded
                 file.SaveAs(path);

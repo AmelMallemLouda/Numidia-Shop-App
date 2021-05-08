@@ -54,7 +54,7 @@
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             @if (User.IsInRole("Customer"))
                             {
-                                <li>@Html.ActionLink("ShoppingCart", "Index", "Cart")</li>
+                                <li class="crt">@Html.ActionLink("ShoppingCart", "Index", "Cart")</li>
                             }
 
                             
@@ -123,6 +123,7 @@
         margin: auto;
         padding: 20px;
         text-align: center;
+       
 
     }
     body {
@@ -131,7 +132,7 @@
         animation-duration: 4s;
     }
     h3 {
-        color: white;
+        color: black;
         vertical-align: top;
         text-decoration: underline;
         text-transform: capitalize;
@@ -139,11 +140,13 @@
         font-style: italic;
         font-size: 30px;
         font-family: "Sofia", sans-serif;
-        /*border: 2px solid black;
-        outline: white solid 10px;
-        margin: auto;
-        padding: 20px;
-        text-align: center;*/
+       
+    }
+    .crt {
+        background-color: whitesmoke;
+     
+        font-family: "Sofia", sans-serif;
+        color:black;
     }
 
 </style>

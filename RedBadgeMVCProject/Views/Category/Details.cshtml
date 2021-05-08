@@ -15,7 +15,7 @@
         <dt>
            <h2 style="text-shadow:1px 1px white;">Category ID:</h2> @*@html.DisplayNameFor(model => model.CategoryId)*@
         </dt>
-            <dd style="font-size:50px">
+            <dd style="font-size:45px">
                 @Html.DisplayFor(model => model.CategoryId)
           </dd>
         }
@@ -42,14 +42,12 @@
 
                 <dt>@Html.DisplayNameFor(modelItem => item.Price)</dt>
                 <dd>@Html.DisplayFor(modelItem => item.Price)</dd>
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.ItemImage)
-                </dt>*@
-                @*<dd><img src="~/Image/@Html.DisplayFor(model => model.ItemImage))" width="150" /> </dd>*@
+               <br />
                 <dd></dd>
-                <dd>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</dd>
+                <dd >@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</dd>
 
                 <br />
+                
             }
 
         </dl>

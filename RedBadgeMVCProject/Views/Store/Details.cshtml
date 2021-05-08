@@ -84,7 +84,7 @@
             <script>
                 // Initialize and add the map
                 function initMap() {
-                    // The location of Uluru
+                    // The location of Store
                     /**/
                     const uluru = { lat: @Model.Latitude , lng: @Model.Longitude};
             /**/
@@ -156,7 +156,7 @@
                                     <h5>@Html.ActionLink("View Item Details", "Details", "Product", new { id = item.ProductId }, null)</h5>
 
                                     <a href="@Url.Action("Buy", "Cart", new { id = item.ProductId })">Add to Cart</a>
-                                    <br />
+                                    <hr />
 
                                 </div>
 

@@ -4,37 +4,41 @@
     ViewBag.Title = "Reviews";
 }
 
-<h2>Reviews</h2>
 
 <div>
-    <h4>ProductDetails</h4>
-    <hr />
+    <h2>ProductDetails</h2>
+   
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemImage)
-        </dt>
+       
+        <div class="review" >
 
 
-        <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="200" /> </td>
+
+          <div>
+           <td><img src="~/Image/@Html.DisplayFor(model => model.ItemImage)" width="500" /> </td>
+           </div>
 
 
-        <dt>
+           <dt>
             @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
+           </dt>
 
-        <dd>
+          <dd>
             @Html.DisplayFor(model => model.ProductName)
-        </dd>
+          </dd>
 
-        <dt>
+          <dt>
             @Html.DisplayNameFor(model => model.ProductDescription)
-        </dt>
+           </dt>
 
-        <dd>
+          <dd>
             @Html.DisplayFor(model => model.ProductDescription)
-        </dd>
+          </dd>
 
-        <h2 class="font-effect-shadow-multiple" style="text-decoration:underline">Reviews</h2>
+        </div>
+        <br />
+        <hr />
+        <h2>Reviews</h2>
        
         <dl class="dl-horizontal">
             @foreach (var item in Model.Reviews)
@@ -50,10 +54,53 @@
         </dl>
 
 
+        <br />
+         
+    </div>
 
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style>
+    h2 {
+        background-color: black;
+        color: white;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 550px;
+        margin-right: 550px;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
+    }
+    .review{
+        margin-left:450px;
+        
+    }
+    .rV {
+        background-color: black;
+        color: white;
+        vertical-align: top;
+        text-decoration: underline;
+        text-transform: capitalize;
+        text-shadow: 1px 1px;
+        font-style: italic;
+        font-size: 30px;
+        font-family: "Sofia", sans-serif;
+        border: 2px solid black;
+        /*  outline: #4CAF50 solid 10px;*/
+        margin-left: 550px;
+        margin-right: 550px;
+        padding: 20px;
+        text-align: center;
+        text-align: center;
+    }
+</style>

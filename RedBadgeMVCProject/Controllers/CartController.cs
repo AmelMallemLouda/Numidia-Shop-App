@@ -61,7 +61,7 @@ namespace RedBadgeMVCProject.Controllers
         private int isExist(int id)
         {
             List<Item> cart = (List<Item>)Session["cart"];
-            for (int i = 0; i < cart.Count; i++) //cart count will increment by 1
+            for (int i = 0; i < cart.Count; i++) 
                 if (cart[i].Product.ProductId.Equals(id))
                     return i;
             return -1; //the quantity will decrement by 1
