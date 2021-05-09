@@ -1,4 +1,4 @@
-![Capture](https://user-images.githubusercontent.com/73450378/117587752-68fbc400-b0ed-11eb-947d-4e172df1771d.PNG)
+
 # Numidia Shop App
 
 > - Numidia Shop Is an ecommerce Web application My target audience is buyers and sellers with stores.This app will help the seller sell more products online, and the buyer will to choose to either buy online or get the store information and buy the items from there. The app will provide the buyer and seller an exceptional experience by offering many services. 
@@ -58,26 +58,9 @@ To run this application, please clone the master and run it on Visual Studio 201
  -https://bootsnipp.com/snippets/45MyB
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ![![Capture](https://user-images.githubusercontent.com/73450378/117587850-e9bac000-b0ed-11eb-8658-f2ebf10b3542.PNG)
+
+
+# Home Page
 
 
