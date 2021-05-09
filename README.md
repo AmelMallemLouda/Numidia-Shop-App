@@ -34,6 +34,7 @@ https://www.youtube.com/watch?v=YYdcayRlgfs
 http://learningprogramming.net/net/asp-net-mvc/build-shopping-cart-with-session-in-asp-net-mvc/
 https://www.latlong.net/
 https://developers.google.com/maps/documentation/javascript/adding-a-google-map
+https://bootsnipp.com/snippets/45MyB
 
 
 
