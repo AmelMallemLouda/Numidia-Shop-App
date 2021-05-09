@@ -59,7 +59,7 @@ To run this application, please clone the master and run it on Visual Studio 201
  -https://bootsnipp.com/snippets/45MyB
 
 
-![![Capture](https://user-images.githubusercontent.com/73450378/117587850-e9bac000-b0ed-11eb-8658-f2ebf10b3542.PNG)
+![Capture](https://user-images.githubusercontent.com/73450378/117587850-e9bac000-b0ed-11eb-8658-f2ebf10b3542.PNG)
 
 
 # Home Page
