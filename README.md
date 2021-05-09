@@ -11,50 +11,50 @@ To run this application, please clone the master and run it on Visual Studio 201
 
 # Purpose of Numdidia Shop
 > -To grab a visitor’s attention with a beautiful website. 
-> 
+ 
 > -The website helps in reaching such remote customers which otherwise would not even know the existence of the sellers physical store,the world becomes your audience with an > ecommerce website. 
-> 
+
 > -The Sellers  can get a wide range of customers from around the globe.
-> 
+
 > -Consumers can purchase online from anywhere at any time using the ecommerce website.
 
 > -The Customers can get the store information and buy products from the store.
 
 # Technologies
-> -Net Framework C#
+ -Net Framework C#
 
- -> -MVC
+-MVC
 
-> -google maps APIs
+-google maps APIs
  
--> -Azure
+-Azure
 
- -> -Launch
+-Launch
  
-> -Visual Studio Community 2019 Version 16.8.5
+ -Visual Studio Community 2019 Version 16.8.5
 
-> -Microsoft .Net Framework Version 4.8.04084\
+-Microsoft .Net Framework Version 4.8.04084\
 
 # Resources :
-> -https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image-controller-in-web-api
-> 
-> -https://www.youtube.com/watch?v=epP2gx1HZm0
-> 
-> -> -https://www.youtube.com/watch?v=ZBd0MnKb7u0&t=221s
-> 
-> -https://www.youtube.com/watch?v=h_jfcLICk_8
-> 
-> -> -https://www.youtube.com/watch?v=1bhzSk5xTP4
-> 
-> -https://www.youtube.com/watch?v=YYdcayRlgfs
-> 
-> -> -http://learningprogramming.net/net/asp-net-mvc/build-shopping-cart-with-session-in-asp-net-mvc/
-> 
-> -https://www.latlong.net/
-> 
-> -https://developers.google.com/maps/documentation/javascript/adding-a-google-map
-> 
-> -https://bootsnipp.com/snippets/45MyB
+ -https://www.c-sharpcorner.com/UploadFile/2b481f/displaying-upload-image-in-image-controller-in-web-api
+
+-https://www.youtube.com/watch?v=epP2gx1HZm0
+
+-https://www.youtube.com/watch?v=ZBd0MnKb7u0&t=221s
+
+-https://www.youtube.com/watch?v=h_jfcLICk_8
+
+ -https://www.youtube.com/watch?v=1bhzSk5xTP4
+
+-https://www.youtube.com/watch?v=YYdcayRlgfs
+
+ -http://learningprogramming.net/net/asp-net-mvc/build-shopping-cart-with-session-in-asp-net-mvc/
+
+-https://www.latlong.net/
+
+-https://developers.google.com/maps/documentation/javascript/adding-a-google-map
+
+ -https://bootsnipp.com/snippets/45MyB
 
 
 
