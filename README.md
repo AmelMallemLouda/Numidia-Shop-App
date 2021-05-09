@@ -10,9 +10,13 @@ To run this application, please clone the master and run it on Visual Studio 201
 
 # Purpose of Numdidia Shop
 > -To grab a visitor’s attention with a beautiful website. 
+> 
 > -The website helps in reaching such remote customers which otherwise would not even know the existence of the sellers physical store,the world becomes your audience with an > ecommerce website. 
+> 
 > -The Sellers  can get a wide range of customers from around the globe.
+> 
 > -Consumers can purchase online from anywhere at any time using the ecommerce website.
+
 > -The Customers can get the store information and buy products from the store.
 
 # Technologies
