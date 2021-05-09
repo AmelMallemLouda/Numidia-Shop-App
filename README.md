@@ -32,6 +32,7 @@ https://www.youtube.com/watch?v=h_jfcLICk_8
 https://www.youtube.com/watch?v=1bhzSk5xTP4
 https://www.youtube.com/watch?v=YYdcayRlgfs
 http://learningprogramming.net/net/asp-net-mvc/build-shopping-cart-with-session-in-asp-net-mvc/
+https://www.latlong.net/
 
 
 
