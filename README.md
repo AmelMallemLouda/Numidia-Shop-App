@@ -5,7 +5,7 @@
 > -The seller will have different views than the buyer once logged in , the seller can list,update and delete  items,categories and stores, unlike the buyer that will only have the options To view a list of categories, stores, products created by the sellers. The buyer will be able to review the item,add Selected Items to the shopping card,Show all recently added cart items, and Upon checkout a total for the ordered Items will be calculated .
 
 
-# How To Use Numidia Shop:
+# How To Use Numidia Shop
 To run this application, please clone the master and run it on Visual Studio 2019 version 4.8 or higher. When using this App, please start by regestring and then log in . The password must be at least 6 characters long, and Seller your role Seller/Customer. Once you have done so,if you register as a seller you will have the options to create//update/delete  Products, Categories,and Stores.If you register as Customer you'll be able to see all the items/Items Details create by the sellers, review the items,add Selected Items to the shopping card,Show all recently added cart items, and Upon checkout a total for the ordered Items will be calculated .
 
 
