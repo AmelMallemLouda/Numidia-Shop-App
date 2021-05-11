@@ -70,7 +70,7 @@ namespace RedBadgeMVCProject.Controllers
         {
             var service = CreateStoreService();
 
-            //ViewBag.SyncOrAsync = "Asynchronous";
+            
             ViewBag.ItemId = await GetItemAsync();
     
             return View();

@@ -43,15 +43,15 @@ namespace RedBadgeMVCProject
 
         });
 
-                CloudBlockBlob cblob = cont.GetBlockBlobReference("Sampleblob.jpg");
+                //CloudBlockBlob cblob = cont.GetBlockBlobReference("Sampleblob.jpg");
 
-                using (Stream file = System.IO.File.OpenRead(@"D:\amit\Nitin sir\Nitinpandit.jpg"))
+                //using (Stream file = System.IO.File.OpenRead(@"D:\amit\Nitin sir\Nitinpandit.jpg"))
 
-                {
+                //{
 
-                    cblob.UploadFromStream(file);
+                //    cblob.UploadFromStream(file);
 
-                }
+                //}
 
             }
             catch (Exception ex)

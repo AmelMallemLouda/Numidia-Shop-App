@@ -35,15 +35,7 @@ namespace RedBadgeMVCProject.Controllers
 
             return View(model);
 
-            ////get the product model data
-            //ProductModel productModel = new ProductModel();
-            //var service = CreateItemService();
-            //ViewBag.products = productModel.findAll();
-            //var model = await service.GetAllItemsAsync();
-
-            //return View(model);
-
-            //That View() method will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
+           //will return a view that corresponds to the ItemController. view() displays all the Items for the current user.
 
         }
 
@@ -69,8 +61,8 @@ namespace RedBadgeMVCProject.Controllers
 
                 //file path
                 pic = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/Image/"), pic);
-                string filepathToSave = "Content/Image/" + pic;
+                var path = Path.Combine(Server.MapPath("~/image/"), pic);
+                string filepathToSave = "image/" + pic;
 
                 // file is uploaded
                 file.SaveAs(path);

@@ -28,8 +28,7 @@ namespace RedBadgeMVC.Models.ItemModels
         [Display(Name = "Item Image")]
         public string ProductImage { get; set; }
 
-        //[Display(Name = "Store Name")]
-        //public string StoreName { get; set; }
+      
 
         public List<Product> findAll()
         {

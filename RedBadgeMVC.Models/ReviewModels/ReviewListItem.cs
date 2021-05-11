@@ -14,11 +14,11 @@ namespace RedBadgeMVC.Models.ReviewModels
 
         [Display(Name = "Review")]
        public string Reviews { get; set; }
-       // public List<ReviewsShort> Reviews { get; set; }
 
 
         [Display(Name = "Product Name")]
         public string ItemName { get; set; }
+
         [Display(Name = "Product Image")]
         public string ItemImage { get; set; }
     }

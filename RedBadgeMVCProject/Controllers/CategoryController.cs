@@ -9,6 +9,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace RedBadgeMVCProject.Controllers
 {
@@ -40,20 +47,78 @@ namespace RedBadgeMVCProject.Controllers
         }
 
        
-
+       
         [HttpPost]
         [ValidateAntiForgeryToken]//The basic purpose of ValidateAntiForgeryToken attribute is to prevent cross-site request forgery attacks
         public async Task<ActionResult> Create(CategoryCreate model, HttpPostedFileBase file)//[HttpPost] method  will push the data inputted in the view through our service and into the db.
         {
+             string storageconnstring = "mol1tJWIXFa1X2rD2C7g9nblaG4eH11fQjuKbp0D6bERk5soM0VzR826HiYmozDlOZ8rmDWuGkIW1F26foSM1g==";
+             
+            string accountname = "numidiastorage1";
+
+
+
+            try
+
+            {
+
+                StorageCredentials creden = new StorageCredentials(accountname, storageconnstring);
+
+                CloudStorageAccount acc = new CloudStorageAccount(creden, useHttps: true);
+
+                CloudBlobClient client = acc.CreateCloudBlobClient();
+
+                CloudBlobContainer cont = client.GetContainerReference("mysample");
+
+                cont.CreateIfNotExists();
+
+                cont.SetPermissions(new BlobContainerPermissions
+
+
+
+                {
+
+                    PublicAccess = BlobContainerPublicAccessType.Blob
+
+
+                });
+
+            }
+            catch (Exception ex)
+
+            {
+
+            }
 
             string pic = null;
             if (file != null) //file can't be null
             {
+                StorageCredentials creden = new StorageCredentials(accountname, storageconnstring);
+
+                CloudStorageAccount acc = new CloudStorageAccount(creden, useHttps: true);
+
+                CloudBlobClient client = acc.CreateCloudBlobClient();
+
+                CloudBlobContainer cont = client.GetContainerReference("mysample");
+
+                cont.CreateIfNotExists();
+
+                cont.SetPermissions(new BlobContainerPermissions
+
+
+
+                {
+
+                    PublicAccess = BlobContainerPublicAccessType.Blob
+
+
+                });
 
                 //file path
                 pic = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/Image/"), pic);
-                string filepathToSave = "Content/Image/" + pic;
+               
+                var path = Path.Combine(Server.MapPath("~/image/"), pic);
+                string filepathToSave = "image/" + pic;
 
                 // file is uploaded
                 file.SaveAs(path);

@@ -16,7 +16,9 @@ namespace RedBadgeMVC.Data
 
         [Display(Name = "Category Type")]
         [MaxLength(100, ErrorMessage = "Too long characters")]
+
         public string CategoryName { get; set; }
+
         [Display(Name = "Category Image")]
         public string CategoryImage { get; set; }
 

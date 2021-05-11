@@ -24,7 +24,6 @@ namespace RedBadgeMVCProject.Controllers
         {
             ApplicationDbContext _db = new ApplicationDbContext();
  
-            //ProductModel productModel = new ProductModel();
             if (Session["cart"] == null)
             {
                 List<Item> cart = new List<Item>();
@@ -37,7 +36,7 @@ namespace RedBadgeMVCProject.Controllers
                 int index = isExist(id);
                 if (index != -1)
                 {
-                    cart[index].Quantity++; //increments by 1
+                    cart[index].Quantity++; 
                 }
                 else
                 {
@@ -64,7 +63,7 @@ namespace RedBadgeMVCProject.Controllers
             for (int i = 0; i < cart.Count; i++) 
                 if (cart[i].Product.ProductId.Equals(id))
                     return i;
-            return -1; //the quantity will decrement by 1
+            return -1; 
         }
 
     }

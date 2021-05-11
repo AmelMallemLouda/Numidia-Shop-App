@@ -17,6 +17,7 @@ namespace RedBadgeMVC.Models.ItemModels
         [Display(Name = "Product Price")]
         public double Price { get; set; }
         public Product Product { get; set; }
+        [Display(Name = "Product Image")]
         public string ItemImage { get; set; }
        
     }

@@ -95,11 +95,7 @@ namespace RedBadgeMVC.Service
                         Price = z.ProductPrice,
                         ItemImage=z.ProductImage,
                     }).ToList(),
-                    //Reviews=entity.Reviews.Select(z => new ReviewListItem
-                    //{
-                    //    ReviewId = z.ReviewId,
-                    //    Reviews = z.Reviews
-                    //}).ToList(),
+                    
 
                 };
 
