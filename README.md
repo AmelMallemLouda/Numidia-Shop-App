@@ -2,7 +2,7 @@
 
 # Numidia Shop App
 
-> - Numidia Shop Is an ecommerce Web application My target audience is buyers and sellers with stores.This app will help the seller sell more products online, and the buyer will to choose to either buy online or get the store information and buy the items from there. The app will provide the buyer and seller an exceptional experience by offering many services. 
+> - Numidia Shop Is an ecommerce Web application. My target audience is buyers and sellers with stores.This app will help the seller sell more products online, and the buyer will to choose to either buy online or get the store information and buy the items from there. The app will provide the buyer and seller an exceptional experience by offering many services. 
  
 > -The seller will have different views than the buyer once logged in , the seller can list,update and delete  items,categories and stores, unlike the buyer that will only have the options To view a list of categories, stores, products created by the sellers. The buyer will be able to review the item,add Selected Items to the shopping card,Show all recently added cart items, and Upon checkout a total for the ordered Items will be calculated .
 
