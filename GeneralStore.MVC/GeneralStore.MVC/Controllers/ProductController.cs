@@ -97,6 +97,8 @@ namespace GeneralStore.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                // this says go get this entry from database and directly accessing  the state of this entity and by saying it is modified it is updating the information int the product
                 _db.Entry(prod).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");////RedirectToAction tells ASP.NET MVC to respond with a Browser redirect to a different action instead of rendering HTML. So, here, if we successfully add the new product, then we should return to the Index view
